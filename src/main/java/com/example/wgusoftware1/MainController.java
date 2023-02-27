@@ -100,6 +100,11 @@ public class MainController extends Application implements Initializable {
 
     @FXML
     void partDeleteHandler(ActionEvent event) {
+        if (mainPartTable.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to delete");
+            alert.showAndWait();
+            return;
+        }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the part?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){

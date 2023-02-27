@@ -139,7 +139,7 @@ public class AddProductController implements Initializable {
                 return;
             }
             id = autoProductGenId();
-            addProduct(new Product(id, name, price, stock, max, min));
+            addProduct(new Product(id, name, price, stock, min, max));
             for (Part associatedPart : addProductTable2.getItems()) {
                 lookupProduct(id).addAssociatedPart(associatedPart);
             }
@@ -150,6 +150,10 @@ public class AddProductController implements Initializable {
             alert.setContentText("Please enter a valid value for each input field");
             alert.showAndWait();
         }
+    }
+    @FXML
+    void addProductSearchHandler(ActionEvent event) {
+        searchPart(addProductSearchTxt, addProductTable);
     }
 
 

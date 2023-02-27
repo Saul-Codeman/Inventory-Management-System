@@ -27,7 +27,7 @@
         <TextField fx:id="modifyProductMaxTxt" layoutX="175.0" layoutY="266.0" prefHeight="20.0" prefWidth="100.0" />
         <Label layoutX="325.0" layoutY="270.0" text="Min" />
         <TextField fx:id="modifyProductMinTxt" layoutX="367.0" layoutY="266.0" prefHeight="20.0" prefWidth="100.0" />
-        <TextField fx:id="modifyProductSearchTxt" layoutX="897.0" layoutY="25.0" onAction="#modifyProductSearchHandler" prefHeight="25.0" prefWidth="175.0" promptText="Search by Product ID or Name" />
+        <TextField fx:id="modifyProductSearchTxt" layoutX="897.0" layoutY="25.0" onAction="#modifyProductSearchHandler" prefHeight="25.0" prefWidth="175.0" promptText="Search by Part ID or Name" />
         <TableView fx:id="modifyProductTable" layoutX="573.0" layoutY="60.0" prefHeight="230.0" prefWidth="500.0">
             <columns>
                 <TableColumn fx:id="modifyProductIdCol" prefWidth="125.0" text="Part ID" />
