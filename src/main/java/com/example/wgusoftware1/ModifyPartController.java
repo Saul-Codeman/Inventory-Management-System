@@ -64,16 +64,19 @@ public class ModifyPartController implements Initializable {
     Stage stage;
     Parent scene;
 
+    // Changes the label to machine ID when activated
     @FXML
     void modifyPartInHouseHandler(ActionEvent event) {
         modifyPartUniqueLbl.setText("Machine ID");
     }
 
+    // Changes the label to Company Name when activated
     @FXML
     void modifyPartOutsourcedHandler(ActionEvent event) {
         modifyPartUniqueLbl.setText("Company Name");
     }
 
+    // Cancels changes to the part and returns to main
     @FXML
     void modifyPartCancelHandler(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all changes made, do you want to continue?");
@@ -83,6 +86,7 @@ public class ModifyPartController implements Initializable {
         }
     }
 
+    // Saves the changes to the part and returns to main
     @FXML
     void modifyPartSaveHandler(ActionEvent event) throws IOException{
         try {
@@ -93,6 +97,7 @@ public class ModifyPartController implements Initializable {
                 alert.showAndWait();
                 return;
             }
+            // RUNTIME ERROR when typing a non-numeric value into text fields
             int stock = Integer.parseInt(modifyPartInventoryTxt.getText());
             double price = Double.parseDouble(modifyPartPriceTxt.getText());
             int max = Integer.parseInt(modifyPartMaxTxt.getText());
@@ -132,6 +137,7 @@ public class ModifyPartController implements Initializable {
         }
     }
 
+    // Collects the part from main and sends it through to the modify part controller to be modified
     public void sendPart(Part part){
 
         setPartFields(part, modifyPartIdTxt, modifyPartNameTxt, modifyPartInventoryTxt, modifyPartPriceTxt, modifyPartMaxTxt, modifyPartMinTxt);

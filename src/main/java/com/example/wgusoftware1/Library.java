@@ -1,3 +1,4 @@
+// Library class to store methods and urls that can be used several times throughout controllers
 package com.example.wgusoftware1;
 
 import javafx.collections.ObservableList;
@@ -183,7 +184,6 @@ public class Library {
         parts = partTable2.getItems();
         parts.remove(partTable2.getSelectionModel().getSelectedItem());
     }
-
      */
     // Sets the table of the associated parts in the modify product controller menu
     public static void setAssociatedPartsTable(TableColumn<Part, Integer> associatedPartIdCol, TableColumn<Part, Integer> associatedPartInvCol, TableColumn<Part, String> associatedPartNameCol, TableColumn<Part, Double> associatedPartPriceCol, TableView<Part> associatedPartTable, Product product) {

@@ -89,6 +89,7 @@ public class AddProductController implements Initializable {
     Stage stage;
     Parent scene;
 
+    // Adds the associated part to the product
     @FXML
     void addProductAddHandler(ActionEvent event) {
         if (addProductTable.getSelectionModel().getSelectedItem() == null){
@@ -98,7 +99,7 @@ public class AddProductController implements Initializable {
         }
         addPartToTable2(addProductTable, addProductTable2, addProductIdCol);
     }
-
+    // Cancels the addition of a new product and returns to main
     @FXML
     void addProductCancelHandler(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text field values, do you want to continue?");
@@ -108,6 +109,7 @@ public class AddProductController implements Initializable {
         }
     }
 
+    // Removes the associated product from the new product
     @FXML
     void addProductRemoveHandler(ActionEvent event) {
         if (addProductTable2.getSelectionModel().getSelectedItem() == null){
@@ -122,6 +124,7 @@ public class AddProductController implements Initializable {
         }
     }
 
+    // Saves the new product and returns to main
     @FXML
     void addProductSaveHandler(ActionEvent event) throws IOException {
         // Take and save the data
@@ -133,6 +136,7 @@ public class AddProductController implements Initializable {
                 alert.showAndWait();
                 return;
             }
+            // RUNTIME ERROR when typing a non-numeric value into text fields
             int stock = Integer.parseInt(addProductInventoryTxt.getText());
             double price = Double.parseDouble(addProductPriceTxt.getText());
             int max = Integer.parseInt(addProductMaxTxt.getText());
@@ -161,6 +165,7 @@ public class AddProductController implements Initializable {
             alert.showAndWait();
         }
     }
+    // Searches for part
     @FXML
     void addProductSearchHandler(ActionEvent event) {
         searchPart(addProductSearchTxt, addProductTable);
@@ -169,6 +174,7 @@ public class AddProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Sets up both the parts and associated parts tables
         addProductTable.setItems(Inventory.getAllParts());
 
         addProductIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
