@@ -65,9 +65,13 @@ public class Library {
             partTableView.setItems(searchParts(searchPartField.getText()));
         }catch (Exception e){
             if(partTableView.getItems().equals(getAllParts())){
-                System.out.println("Hi");
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Search field empty");
+                alert.showAndWait();
+                partTableView.setItems(getAllParts());
             }
             else{
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Part not found");
+                alert.showAndWait();
                 partTableView.setItems(getAllParts());
             }
         }
@@ -77,9 +81,13 @@ public class Library {
             productTableView.setItems(searchProducts(searchProductField.getText()));
         }catch (Exception e){
             if(productTableView.getItems().equals(getAllProducts())){
-                System.out.println("Hi");
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Search field empty");
+                alert.showAndWait();
+                productTableView.setItems(getAllProducts());
             }
             else{
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Product not found");
+                alert.showAndWait();
                 productTableView.setItems(getAllProducts());
             }
         }
@@ -87,7 +95,8 @@ public class Library {
     // Delete Part
     public static void deleteSelectedPart(TableView<Part> partTableView) {
         if (partTableView.getSelectionModel().getSelectedItem() == null) {
-            System.out.println("Please select an item to delete");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to delete");
+            alert.showAndWait();
         } else {
             deletePart(partTableView.getSelectionModel().getSelectedItem(), partTableView.getItems());
             partTableView.setItems(partTableView.getItems());
@@ -101,7 +110,8 @@ public class Library {
     // Delete Product
     public static void deleteSelectedProduct(TableView<Product> productTableView){
         if (productTableView.getSelectionModel().getSelectedItem() == null){
-            System.out.println("Please select an item to delete");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a product to delete");
+            alert.showAndWait();
         }
         else{
             deleteProduct(productTableView.getSelectionModel().getSelectedItem());
@@ -130,7 +140,8 @@ public class Library {
     // Modify Parts
     public static void modifySelectedPart(MainController mainController, TableView<Part> partTableView, ActionEvent event) throws IOException{
         if(partTableView.getSelectionModel().getSelectedItem() == null){
-            System.out.println("No part selected");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to modify");
+            alert.showAndWait();
         }
         else {
             FXMLLoader loader = new FXMLLoader();
@@ -148,7 +159,8 @@ public class Library {
     //Modify Products
     public static void modifySelectedProduct(MainController mainController, TableView<Product> productTableView, ActionEvent event) throws IOException{
         if(productTableView.getSelectionModel().getSelectedItem() == null){
-            System.out.println("No part selected");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a product to modify");
+            alert.showAndWait();
         }
         else {
             FXMLLoader loader = new FXMLLoader();
@@ -179,5 +191,16 @@ public class Library {
         associatedPartInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         associatedPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
+
+    // Auto gen ID
+    private static int partId = 0;
+    private static int productId = 0;
+    public static int autoPartGenId(){
+        return ++partId;
+    }
+    public static int autoProductGenId(){
+        return ++productId;
+    }
+
 
 }

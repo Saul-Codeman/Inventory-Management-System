@@ -16,7 +16,7 @@
             </font>
         </Label>
         <Label layoutX="75.0" layoutY="110.0" text="ID" />
-        <TextField fx:id="modifyProductIdTxt" layoutX="175.0" layoutY="106.0" prefHeight="20.0" prefWidth="100.0" />
+        <TextField fx:id="modifyProductIdTxt" disable="true" layoutX="175.0" layoutY="106.0" prefHeight="20.0" prefWidth="100.0" promptText="Auto Gen - ID" />
         <Label layoutX="75.0" layoutY="150.0" text="Name" />
         <TextField fx:id="modifyProductNameTxt" layoutX="175.0" layoutY="146.0" prefHeight="20.0" prefWidth="100.0" />
         <Label layoutX="75.0" layoutY="190.0" text="Inventory" />

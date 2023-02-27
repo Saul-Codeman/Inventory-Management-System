@@ -7,16 +7,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.example.wgusoftware1.Library.*;
@@ -88,7 +86,11 @@ public class MainController extends Application implements Initializable {
 
     @FXML
     void mainExitHandler(ActionEvent event) {
-        System.exit(0);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to close the application?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            System.exit(0);
+        }
     }
 
     @FXML
@@ -98,7 +100,11 @@ public class MainController extends Application implements Initializable {
 
     @FXML
     void partDeleteHandler(ActionEvent event) {
-        deleteSelectedPart(mainPartTable);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the part?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            deleteSelectedPart(mainPartTable);
+        }
     }
 
     @FXML
@@ -118,7 +124,22 @@ public class MainController extends Application implements Initializable {
 
     @FXML
     void productDeleteHandler(ActionEvent event) {
-        deleteSelectedProduct(mainProductTable);
+        if (mainProductTable.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a product to delete");
+            alert.showAndWait();
+            return;
+        }
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete the product?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            if(mainProductTable.getSelectionModel().getSelectedItem().getAllAssociatedParts().isEmpty()) {
+                deleteSelectedProduct(mainProductTable);
+            }
+            else{
+                alert = new Alert(Alert.AlertType.WARNING, "Cannot delete a product with an associated part");
+                alert.showAndWait();
+            }
+        }
     }
 
     @FXML
@@ -148,11 +169,11 @@ public class MainController extends Application implements Initializable {
     }
 
     public static void main(String[] args){
-        Product product1 = new Product(1,"Giant Bike", 299.99, 5, 1, 10);
-        Product product2 = new Product(2, "Tricycle", 99.99, 3, 1, 10);
-        InHouse inPart1 = new InHouse(1,"Brakes", 15.00, 10, 2, 100, 100);
-        InHouse inPart2 = new InHouse(2,"Wheel", 11.00, 16, 2, 200, 200);
-        Outsourced outPart1 = new Outsourced(3, "Seat", 15.00, 10, 2, 200, "ABC Company");
+        Product product1 = new Product(autoProductGenId(),"Giant Bike", 299.99, 5, 1, 10);
+        Product product2 = new Product(autoProductGenId(), "Tricycle", 99.99, 3, 1, 10);
+        InHouse inPart1 = new InHouse(autoPartGenId(),"Brakes", 15.00, 10, 2, 100, 100);
+        InHouse inPart2 = new InHouse(autoPartGenId(),"Wheel", 11.00, 16, 2, 200, 200);
+        Outsourced outPart1 = new Outsourced(autoPartGenId(), "Seat", 15.00, 10, 2, 200, "ABC Company");
 
 
         Inventory.addPart(inPart1);

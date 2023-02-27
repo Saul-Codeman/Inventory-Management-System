@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.example.wgusoftware1.Library.*;
@@ -75,28 +76,60 @@ public class ModifyPartController implements Initializable {
 
     @FXML
     void modifyPartCancelHandler(ActionEvent event) throws IOException {
-        switchScreen(event, mainUrl);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text field values, do you want to continue?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            switchScreen(event, mainUrl);
+        }
     }
 
     @FXML
     void modifyPartSaveHandler(ActionEvent event) throws IOException{
-        int id = Integer.parseInt(modifyPartIdTxt.getText());
-        String name = modifyPartNameTxt.getText();
-        int stock = Integer.parseInt(modifyPartInventoryTxt.getText());
-        double price = Double.parseDouble(modifyPartPriceTxt.getText());
-        int max = Integer.parseInt(modifyPartMaxTxt.getText());
-        int min = Integer.parseInt(modifyPartMinTxt.getText());
+        try {
+            int id = Integer.parseInt(modifyPartIdTxt.getText());
+            String name = modifyPartNameTxt.getText();
+            if (name.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Input fields cannot be empty.");
+                alert.showAndWait();
+                return;
+            }
+            int stock = Integer.parseInt(modifyPartInventoryTxt.getText());
+            double price = Double.parseDouble(modifyPartPriceTxt.getText());
+            int max = Integer.parseInt(modifyPartMaxTxt.getText());
+            int min = Integer.parseInt(modifyPartMinTxt.getText());
 
-        if (modifyPartInHouseButton.isSelected()) {
-            int machineId = Integer.parseInt(modifyPartMachineIdTxt.getText());
-            Inventory.updatePart(id, new InHouse(id, name, price, stock, min, max, machineId));
-        }
-        else{
-            String companyName = modifyPartMachineIdTxt.getText();
-            Inventory.updatePart(id, new Outsourced(id, name, price, stock, min, max, companyName));
-        }
+            if (min > max) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Max must be greater than min.");
+                alert.showAndWait();
+                return;
+            }
+            if (stock > max || min > stock) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Inventory must be between max and min.");
+                alert.showAndWait();
+                return;
+            }
 
-        switchScreen(event, mainUrl);
+            if (modifyPartInHouseButton.isSelected()) {
+                int machineId = Integer.parseInt(modifyPartMachineIdTxt.getText());
+                Inventory.updatePart(id, new InHouse(id, name, price, stock, min, max, machineId));
+            } else {
+                String companyName = modifyPartMachineIdTxt.getText();
+                if (companyName.isEmpty()) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "Input fields cannot be empty.");
+                    alert.showAndWait();
+                    return;
+                }
+                Inventory.updatePart(id, new Outsourced(id, name, price, stock, min, max, companyName));
+            }
+
+            switchScreen(event, mainUrl);
+        }
+        catch(NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialogue");
+            alert.setContentText("Please enter a valid value for each input field");
+            alert.showAndWait();
+        }
     }
 
     public void sendPart(Part part){

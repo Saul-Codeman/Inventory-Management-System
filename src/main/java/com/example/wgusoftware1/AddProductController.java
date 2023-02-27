@@ -4,10 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -15,6 +12,7 @@ import javafx.scene.Scene;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.example.wgusoftware1.Inventory.addProduct;
@@ -98,28 +96,60 @@ public class AddProductController implements Initializable {
 
     @FXML
     void addProductCancelHandler(ActionEvent event) throws IOException {
-        switchScreen(event, mainUrl);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text field values, do you want to continue?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            switchScreen(event, mainUrl);
+        }
     }
 
     @FXML
     void addProductRemoveHandler(ActionEvent event) {
-        deleteSelectedPart(addProductTable2);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will remove the associated part, do you want to continue?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            deleteSelectedPart(addProductTable2);
+        }
     }
 
     @FXML
     void addProductSaveHandler(ActionEvent event) throws IOException {
         // Take and save the data
-        int id = Integer.parseInt(addProductIdTxt.getText());
-        String name = addProductNameTxt.getText();
-        int stock = Integer.parseInt(addProductInventoryTxt.getText());
-        double price = Double.parseDouble(addProductPriceTxt.getText());
-        int max = Integer.parseInt(addProductMaxTxt.getText());
-        int min = Integer.parseInt(addProductMinTxt.getText());
-        addProduct(new Product(id, name, price, stock, max, min));
-        for(Part associatedPart : addProductTable2.getItems()) {
-            lookupProduct(id).addAssociatedPart(associatedPart);
+        try {
+            int id;
+            String name = addProductNameTxt.getText();
+            if (name.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Input fields cannot be empty.");
+                alert.showAndWait();
+                return;
+            }
+            int stock = Integer.parseInt(addProductInventoryTxt.getText());
+            double price = Double.parseDouble(addProductPriceTxt.getText());
+            int max = Integer.parseInt(addProductMaxTxt.getText());
+            int min = Integer.parseInt(addProductMinTxt.getText());
+
+            if (min > max) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Max must be greater than min.");
+                alert.showAndWait();
+                return;
+            }
+            if (stock > max || min > stock) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Inventory must be between max and min.");
+                alert.showAndWait();
+                return;
+            }
+            id = autoProductGenId();
+            addProduct(new Product(id, name, price, stock, max, min));
+            for (Part associatedPart : addProductTable2.getItems()) {
+                lookupProduct(id).addAssociatedPart(associatedPart);
+            }
+            switchScreen(event, mainUrl);
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialogue");
+            alert.setContentText("Please enter a valid value for each input field");
+            alert.showAndWait();
         }
-        switchScreen(event, mainUrl);
     }
 
 

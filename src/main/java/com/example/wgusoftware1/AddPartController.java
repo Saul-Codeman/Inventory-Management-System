@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.example.wgusoftware1.Library.*;
@@ -74,30 +75,54 @@ public class AddPartController implements Initializable {
 
     @FXML
     void addPartCancelHandler(ActionEvent event) throws IOException {
-        switchScreen(event, mainUrl);
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text field values, do you want to continue?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            switchScreen(event, mainUrl);
+        }
     }
 
     @FXML
     void addPartSaveHandler(ActionEvent event) throws IOException {
         // Take and save the data
         try{
-            int id = Integer.parseInt(addPartIdTxt.getText());
+            int id;
             String name = addPartNameTxt.getText();
+            if (name.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Input fields cannot be empty.");
+                alert.showAndWait();
+                return;
+            }
             int stock = Integer.parseInt(addPartInventoryTxt.getText());
             double price = Double.parseDouble(addPartPriceTxt.getText());
             int max = Integer.parseInt(addPartMaxTxt.getText());
             int min = Integer.parseInt(addPartMinTxt.getText());
 
             if (min > max){
-                System.out.println("Max must be greater than min.");
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Max must be greater than min.");
+                alert.showAndWait();
+                return;
+            }
+            if (stock > max || min > stock){
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Inventory must be between max and min.");
+                alert.showAndWait();
+                return;
             }
 
             if (addPartInHouseButton.isSelected()) {
                 int machineId = Integer.parseInt(addPartMachineIdTxt.getText());
+                id = autoPartGenId();
                 Inventory.addPart(new InHouse(id, name, price, stock, min, max, machineId));
             }
             else{
                 String companyName = addPartMachineIdTxt.getText();
+                if (companyName.isEmpty()) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "Input fields cannot be empty.");
+                    alert.showAndWait();
+                    return;
+                }
+                id = autoPartGenId();
                 Inventory.addPart(new Outsourced(id, name, price, stock, min, max, companyName));
             }
 
@@ -105,7 +130,10 @@ public class AddPartController implements Initializable {
             switchScreen(event, mainUrl);
         }
         catch(NumberFormatException e){
-            System.out.println("Please enter valid values in text fields.");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialogue");
+            alert.setContentText("Please enter a valid value for each input field");
+            alert.showAndWait();
         }
 
     }

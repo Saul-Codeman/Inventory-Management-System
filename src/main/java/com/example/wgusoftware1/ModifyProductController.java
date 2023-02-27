@@ -4,10 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -15,6 +12,7 @@ import javafx.scene.Scene;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import static com.example.wgusoftware1.Inventory.lookupProduct;
@@ -95,30 +93,65 @@ public class ModifyProductController implements Initializable {
         addPartToTable2(modifyProductTable, modifyProductTable2, modifyProductIdCol);
     }
 
+
     @FXML
     void modifyProductCancelHandler(ActionEvent event) throws IOException {
-        switchScreen(event, mainUrl);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text field values, do you want to continue?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            switchScreen(event, mainUrl);
+        }
     }
+
 
     @FXML
     void modifyProductRemoveHandler(ActionEvent event) {
-        deleteSelectedPart(modifyProductTable2);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will remove the associated part, do you want to continue?");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK) {
+            deleteSelectedPart(modifyProductTable2);
+        }
     }
 
     @FXML
     void modifyProductSaveHandler(ActionEvent event) throws IOException{
-        int id = Integer.parseInt(modifyProductIdTxt.getText());
-        String name = modifyProductNameTxt.getText();
-        int stock = Integer.parseInt(modifyProductInventoryTxt.getText());
-        double price = Double.parseDouble(modifyProductPriceTxt.getText());
-        int max = Integer.parseInt(modifyProductMaxTxt.getText());
-        int min = Integer.parseInt(modifyProductMinTxt.getText());
-        Inventory.updateProduct(id, new Product(id, name, price, stock, max, min));
-        for(Part associatedPart : modifyProductTable2.getItems()) {
-            lookupProduct(id).addAssociatedPart(associatedPart);
-        }
+        try {
+            int id = Integer.parseInt(modifyProductIdTxt.getText());
+            String name = modifyProductNameTxt.getText();
+            if (name.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Input fields cannot be empty.");
+                alert.showAndWait();
+                return;
+            }
+            int stock = Integer.parseInt(modifyProductInventoryTxt.getText());
+            double price = Double.parseDouble(modifyProductPriceTxt.getText());
+            int max = Integer.parseInt(modifyProductMaxTxt.getText());
+            int min = Integer.parseInt(modifyProductMinTxt.getText());
 
-        switchScreen(event, mainUrl);
+            if (min > max) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Max must be greater than min.");
+                alert.showAndWait();
+                return;
+            }
+            if (stock > max || min > stock) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Inventory must be between max and min.");
+                alert.showAndWait();
+                return;
+            }
+
+            Inventory.updateProduct(id, new Product(id, name, price, stock, min, max));
+            for (Part associatedPart : modifyProductTable2.getItems()) {
+                lookupProduct(id).addAssociatedPart(associatedPart);
+            }
+
+            switchScreen(event, mainUrl);
+        }
+        catch(NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Dialogue");
+            alert.setContentText("Please enter a valid value for each input field");
+            alert.showAndWait();
+        }
 
     }
 

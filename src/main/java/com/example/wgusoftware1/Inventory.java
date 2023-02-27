@@ -2,6 +2,7 @@ package com.example.wgusoftware1;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 public class Inventory {
 
@@ -107,7 +108,8 @@ public class Inventory {
             }
         }
         if (Parts.isEmpty()){
-            System.out.println("Not Found");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Part not found");
+            alert.showAndWait();
             return getAllParts();
         }else{
         return Parts;
@@ -124,7 +126,8 @@ public class Inventory {
             }
         }
         if (Products.isEmpty()){
-            System.out.println("Not Found");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Product not found");
+            alert.showAndWait();
             return getAllProducts();
         }else{
             return Products;
