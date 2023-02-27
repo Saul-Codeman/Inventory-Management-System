@@ -98,7 +98,7 @@ public class Inventory {
         return allProducts.remove(product);
     }
 
-    // Search parts
+    // Searches for a part based on id or name
     public static ObservableList<Part> searchParts(String search){
         ObservableList<Part> Parts = FXCollections.observableArrayList();
         search = search.trim().toLowerCase();
@@ -116,7 +116,7 @@ public class Inventory {
         }
     }
 
-    // Search products
+    // Searches for products based on id or name
     public static ObservableList<Product> searchProducts(String search){
         ObservableList<Product> Products = FXCollections.observableArrayList();
         search = search.trim().toLowerCase();

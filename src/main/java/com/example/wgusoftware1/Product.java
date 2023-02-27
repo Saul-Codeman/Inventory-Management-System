@@ -72,12 +72,15 @@ public class Product {
         this.min = min;
         this.max = max;
     }
+    // Adds the products associated part
     public void addAssociatedPart(Part part){
         associatedParts.add(part);
     }
+    // Deletes and associated part of the product
     public boolean deleteAssociatedPart(Part part){
         return associatedParts.remove(part);
     }
+    // Returns all associated parts of the product
     public ObservableList<Part> getAllAssociatedParts(){
         return associatedParts;
     }

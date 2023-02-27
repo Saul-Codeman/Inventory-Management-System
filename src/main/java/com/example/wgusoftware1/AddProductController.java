@@ -91,6 +91,11 @@ public class AddProductController implements Initializable {
 
     @FXML
     void addProductAddHandler(ActionEvent event) {
+        if (addProductTable.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to add");
+            alert.showAndWait();
+            return;
+        }
         addPartToTable2(addProductTable, addProductTable2, addProductIdCol);
     }
 
@@ -105,6 +110,11 @@ public class AddProductController implements Initializable {
 
     @FXML
     void addProductRemoveHandler(ActionEvent event) {
+        if (addProductTable2.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to remove");
+            alert.showAndWait();
+            return;
+        }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will remove the associated part, do you want to continue?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {

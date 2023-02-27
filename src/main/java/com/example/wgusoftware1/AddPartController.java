@@ -63,16 +63,19 @@ public class AddPartController implements Initializable {
     Stage stage;
     Parent scene;
 
+    // Switches label to machineID
     @FXML
     void addPartInHouseHandler(ActionEvent event) {
         addPartUniqueLbl.setText("Machine ID");
     }
 
+    // Switches label to Company Name
     @FXML
     void addPartOutsourcedHandler(ActionEvent event) {
         addPartUniqueLbl.setText("Company Name");
     }
 
+    // Cancel Changes
     @FXML
     void addPartCancelHandler(ActionEvent event) throws IOException {
 
@@ -83,6 +86,7 @@ public class AddPartController implements Initializable {
         }
     }
 
+    // Save and add the part
     @FXML
     void addPartSaveHandler(ActionEvent event) throws IOException {
         // Take and save the data
@@ -94,6 +98,7 @@ public class AddPartController implements Initializable {
                 alert.showAndWait();
                 return;
             }
+            // RUNTIME ERROR when typing a non-numeric value into text fields
             int stock = Integer.parseInt(addPartInventoryTxt.getText());
             double price = Double.parseDouble(addPartPriceTxt.getText());
             int max = Integer.parseInt(addPartMaxTxt.getText());

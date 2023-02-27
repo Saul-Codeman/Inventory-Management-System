@@ -1,5 +1,7 @@
 package com.example.wgusoftware1;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -88,9 +90,24 @@ public class ModifyProductController implements Initializable {
     Stage stage;
     Parent scene;
 
+    // Saving an original parts list in case the user makes changes and cancels
+    private ObservableList<Part> tempPartsList;
+
     @FXML
     void modifyProductAddHandler(ActionEvent event) {
-        addPartToTable2(modifyProductTable, modifyProductTable2, modifyProductIdCol);
+        // FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
+        // I ended up using a temporary list to store the associated parts. I would only add or remove from that list and set table 2 to match
+        // Old method had a bug that would still add parts even when canceled
+        // addPartToTable2(modifyProductTable, modifyProductTable2, modifyProductIdCol);
+        if (modifyProductTable.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to add");
+            alert.showAndWait();
+            return;
+        }
+        tempPartsList = FXCollections.observableArrayList(modifyProductTable2.getItems());
+        Part part = modifyProductTable.getSelectionModel().getSelectedItem();
+        tempPartsList.add(part);
+        modifyProductTable2.setItems(tempPartsList);
     }
 
 
@@ -99,6 +116,9 @@ public class ModifyProductController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text field values, do you want to continue?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
+            // Enhanced
+            // Old method had a bug that would still add or remove parts even when canceled
+            modifyProductTable2.setItems(tempPartsList);
             switchScreen(event, mainUrl);
         }
     }
@@ -106,10 +126,22 @@ public class ModifyProductController implements Initializable {
 
     @FXML
     void modifyProductRemoveHandler(ActionEvent event) {
+        // FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
+        if (modifyProductTable2.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to remove");
+            alert.showAndWait();
+            return;
+        }
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will remove the associated part, do you want to continue?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-            deleteSelectedPart(modifyProductTable2);
+            // Enhanced method
+            tempPartsList = FXCollections.observableArrayList(modifyProductTable2.getItems());
+            Part part = modifyProductTable2.getSelectionModel().getSelectedItem();
+            tempPartsList.remove(part);
+            modifyProductTable2.setItems(tempPartsList);
+            // Old method had a bug that would still remove parts even when canceled
+            // deleteSelectedPart(modifyProductTable2);
         }
     }
 
@@ -144,6 +176,7 @@ public class ModifyProductController implements Initializable {
                 lookupProduct(id).addAssociatedPart(associatedPart);
             }
 
+
             switchScreen(event, mainUrl);
         }
         catch(NumberFormatException e){
@@ -168,7 +201,6 @@ public class ModifyProductController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
     }
 }

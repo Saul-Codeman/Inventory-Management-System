@@ -84,6 +84,7 @@ public class MainController extends Application implements Initializable {
     Stage stage;
     Parent scene;
 
+    // Exit button
     @FXML
     void mainExitHandler(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to close the application?");
@@ -93,11 +94,13 @@ public class MainController extends Application implements Initializable {
         }
     }
 
+    // Add a part menu
     @FXML
     void partAddHandler(ActionEvent event) throws IOException {
         switchScreen(event, addPartUrl);
     }
 
+    // Delete a selected part
     @FXML
     void partDeleteHandler(ActionEvent event) {
         if (mainPartTable.getSelectionModel().getSelectedItem() == null){
@@ -112,21 +115,25 @@ public class MainController extends Application implements Initializable {
         }
     }
 
+    // Modify a selected part
     @FXML
     void partModifyHandler(ActionEvent event) throws IOException {
         modifySelectedPart(this, mainPartTable, event);
     }
 
+    // Search for a part
     @FXML
     void partSearchHandler(ActionEvent event) {
         searchPart(mainPartSearchTxt, mainPartTable);
     }
 
+    // Add a product menu
     @FXML
     void productAddHandler(ActionEvent event) throws IOException {
         switchScreen(event, addProductUrl);
     }
 
+    // Delete the selected product
     @FXML
     void productDeleteHandler(ActionEvent event) {
         if (mainProductTable.getSelectionModel().getSelectedItem() == null){
@@ -147,23 +154,25 @@ public class MainController extends Application implements Initializable {
         }
     }
 
+    // Choose a product to modify and switch scenes
     @FXML
     void productModifyHandler(ActionEvent event) throws IOException {
         modifySelectedProduct(this, mainProductTable,event);
     }
 
+    // Search Products
     @FXML
     void productSearchHandler(ActionEvent event) {
         searchProduct(mainProductSearchTxt, mainProductTable);
     }
 
-    //Methods
-
+    // Initialize in console
     @Override
     public void init(){
         System.out.println("Initialized");
     }
 
+    // Load the page
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("Main.fxml"));
@@ -174,6 +183,8 @@ public class MainController extends Application implements Initializable {
     }
 
     public static void main(String[] args){
+
+        // Declare data for Inventory Management System
         Product product1 = new Product(autoProductGenId(),"Giant Bike", 299.99, 5, 1, 10);
         Product product2 = new Product(autoProductGenId(), "Tricycle", 99.99, 3, 1, 10);
         InHouse inPart1 = new InHouse(autoPartGenId(),"Brakes", 15.00, 10, 2, 100, 100);
