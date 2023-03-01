@@ -203,6 +203,11 @@ public class AddPartController implements Initializable {
     }
 
 
+    /**
+     *
+     * @param url of current form
+     * @param resourceBundle bundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

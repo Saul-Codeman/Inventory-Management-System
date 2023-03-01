@@ -19,6 +19,9 @@ import java.util.ResourceBundle;
 
 import static com.example.wgusoftware1.Library.*;
 
+/**
+ * MainController class used to observe the whole inventory and pick the events the user wants to perform
+ */
 public class MainController extends Application implements Initializable {
 
     /**

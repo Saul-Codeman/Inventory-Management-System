@@ -210,7 +210,11 @@ public class ModifyPartController implements Initializable {
             modifyPartMachineIdTxt.setText(((Outsourced) part).getCompanyName());
         }
     }
-
+    /**
+     *
+     * @param url of current form
+     * @param resourceBundle bundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
