@@ -11,22 +11,47 @@ public class Inventory {
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
     // Add parts and products
+
+    /**
+     *
+     * @param part added to allParts
+     */
     public static void addPart(Part part){
         allParts.add(part);
     }
+
+    /**
+     *
+     * @param product add to allProducts
+     */
     public static void addProduct(Product product){
         allProducts.add(product);
     }
 
+    /**
+     *
+     * @return allParts
+     */
     // Get Parts and products
     public static ObservableList<Part> getAllParts(){
         return allParts;
     }
+
+    /**
+     *
+     * @return allProducts
+     */
     public static ObservableList<Product> getAllProducts(){
         return allProducts;
     }
 
     //Lookup parts and products by ID
+
+    /**
+     *
+     * @param id to lookup
+     * @return allParts.get(id)
+     */
     public static Part lookupPart(int id){
         if(!allParts.isEmpty()){
             for(int i = 0; i < allParts.size(); i++){
@@ -38,6 +63,11 @@ public class Inventory {
         return null;
     }
 
+    /**
+     *
+     * @param id to lookup
+     * @return allProducts.get(id)
+     */
     public static Product lookupProduct(int id){
         if(!allProducts.isEmpty()){
             for(int i = 0; i < allProducts.size(); i++){
@@ -49,6 +79,12 @@ public class Inventory {
         return null;
     }
     //Lookup Parts and Products by name
+
+    /**
+     *
+     * @param name to lookup
+     * @return allParts.get(name)
+     */
     public static Part lookupPart(String name){
         if(!allParts.isEmpty()){
             for(int i = 0; i < allParts.size(); i++){
@@ -59,6 +95,12 @@ public class Inventory {
         }
         return null;
     }
+
+    /**
+     *
+     * @param name to lookup
+     * @return allProducts.get(name)
+     */
     public static Product lookupProduct(String name){
         if(!allProducts.isEmpty()){
             for(int i = 0; i < allProducts.size(); i++){
@@ -70,6 +112,12 @@ public class Inventory {
         return null;
     }
     //Update parts and products
+
+    /**
+     *
+     * @param id of part to update
+     * @param modifiedPart part modified
+     */
     public static void updatePart(int id, Part modifiedPart){
         int i = -1;
         for (Part part : getAllParts()){
@@ -80,6 +128,12 @@ public class Inventory {
             }
         }
     }
+
+    /**
+     *
+     * @param id of product to update
+     * @param modifiedProduct product modified
+     */
     public static void updateProduct(int id, Product modifiedProduct){
         int i = -1;
         for (Product product : getAllProducts()){
@@ -91,14 +145,32 @@ public class Inventory {
         }
     }
     //Delete parts and products
+
+    /**
+     *
+     * @param part to delete
+     * @return allParts.remove(part)
+     */
     public static boolean deletePart(Part part){
         return allParts.remove(part);
     }
+
+    /**
+     *
+     * @param product to delete
+     * @return allProducts.remove(product)
+     */
     public static boolean deleteProduct(Product product){
         return allProducts.remove(product);
     }
 
     // Searches for a part based on id or name
+
+    /**
+     *
+     * @param search id or name of part to be searched
+     * @return Parts
+     */
     public static ObservableList<Part> searchParts(String search){
         ObservableList<Part> Parts = FXCollections.observableArrayList();
         search = search.trim().toLowerCase();
@@ -117,6 +189,12 @@ public class Inventory {
     }
 
     // Searches for products based on id or name
+
+    /**
+     *
+     * @param search id or name of product to be searched
+     * @return Products
+     */
     public static ObservableList<Product> searchProducts(String search){
         ObservableList<Product> Products = FXCollections.observableArrayList();
         search = search.trim().toLowerCase();

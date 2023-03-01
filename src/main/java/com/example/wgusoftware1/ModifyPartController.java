@@ -19,44 +19,81 @@ import static com.example.wgusoftware1.Library.*;
 
 public class ModifyPartController implements Initializable {
 
-    //FXML
-
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button modifyPartCancelButton;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyPartIdTxt;
 
+    /**
+     * Radio button of the GUI interface
+     */
     @FXML
     private RadioButton modifyPartInHouseButton;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyPartInventoryTxt;
 
+    /**
+     * Toggle group of the GUI interface
+     */
     @FXML
     private ToggleGroup modifyPartLocationTG;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyPartMachineIdTxt;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyPartMaxTxt;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyPartMinTxt;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyPartNameTxt;
 
+    /**
+     * Radio button of the GUI interface
+     */
     @FXML
     private RadioButton modifyPartOutsourcedButton;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyPartPriceTxt;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button modifyPartSaveButton;
 
+    /**
+     * Label of the GUI interface
+     */
     @FXML
     private Label modifyPartUniqueLbl;
 
@@ -64,19 +101,29 @@ public class ModifyPartController implements Initializable {
     Stage stage;
     Parent scene;
 
-    // Changes the label to machine ID when activated
+    /**
+     *
+     * @param event Changes the label to machine ID when activated
+     */
     @FXML
     void modifyPartInHouseHandler(ActionEvent event) {
         modifyPartUniqueLbl.setText("Machine ID");
     }
 
-    // Changes the label to Company Name when activated
+    /**
+     *
+     * @param event Changes the label to Company Name when activated
+     */
     @FXML
     void modifyPartOutsourcedHandler(ActionEvent event) {
         modifyPartUniqueLbl.setText("Company Name");
     }
 
-    // Cancels changes to the part and returns to main
+    /**
+     *
+     * @param event Cancels changes to the part and returns to main
+     * @throws IOException catches RUNTIME ERROR
+     */
     @FXML
     void modifyPartCancelHandler(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all changes made, do you want to continue?");
@@ -86,7 +133,11 @@ public class ModifyPartController implements Initializable {
         }
     }
 
-    // Saves the changes to the part and returns to main
+    /**
+     *
+     * @param event Saves the changes to the part and returns to main
+     * @throws IOException catches RUNTIME ERROR
+     */
     @FXML
     void modifyPartSaveHandler(ActionEvent event) throws IOException{
         try {
@@ -137,7 +188,10 @@ public class ModifyPartController implements Initializable {
         }
     }
 
-    // Collects the part from main and sends it through to the modify part controller to be modified
+    /**
+     *
+     * @param part Collects the part from main and sends it through to the modify part controller to be modified
+     */
     public void sendPart(Part part){
 
         setPartFields(part, modifyPartIdTxt, modifyPartNameTxt, modifyPartInventoryTxt, modifyPartPriceTxt, modifyPartMaxTxt, modifyPartMinTxt);

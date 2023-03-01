@@ -1,4 +1,3 @@
-// Library class to store methods and urls that can be used several times throughout controllers
 package com.example.wgusoftware1;
 
 import javafx.collections.ObservableList;
@@ -15,17 +14,31 @@ import java.io.IOException;
 
 import static com.example.wgusoftware1.Inventory.*;
 
-// Class used to store commonly used functions throughout the controllers
+
+/**
+ * Library Class used to store commonly used functions throughout the controllers
+ */
 public class Library {
 
-    // URL strings
+    /**
+     * URL strings for the switchView function
+     */
     public static final String addPartUrl = "/com/example/wgusoftware1/AddPart.fxml";
     public static final String addProductUrl = "/com/example/wgusoftware1/AddProduct.fxml";
     public static final String mainUrl = "/com/example/wgusoftware1/Main.fxml";
     public static final String modifyProductUrl = "/com/example/wgusoftware1/ModifyProduct.fxml";
     public static final String modifyPartUrl = "/com/example/wgusoftware1/ModifyPart.fxml";
 
-   // Displays all parts to the parts tables
+
+    /**
+     *
+     * @param partTable sets table
+     * @param partIdCol sets id in table
+     * @param partNameCol sets name in table
+     * @param partInventoryCol sets inventory in table
+     * @param partPriceCol sets price in table
+     * Displays all parts to the parts tables
+     */
     public static void setPartsTable(TableView<Part> partTable, TableColumn<Part, Integer> partIdCol, TableColumn<Part, String> partNameCol, TableColumn<Part, Integer> partInventoryCol, TableColumn<Part, Double> partPriceCol){
         // Initialize Parts
         partTable.setItems(Inventory.getAllParts());
@@ -35,7 +48,16 @@ public class Library {
         partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         partPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
-    // Displays all products to the products tables
+
+    /**
+     *
+     * @param productTable sets table
+     * @param productIdCol sets id in table
+     * @param productNameCol sets name in table
+     * @param productInventoryCol sets inventory in table
+     * @param productPriceCol sets price in table
+     * Displays all products to the products tables
+     */
     public static void setProductsTable(TableView<Product> productTable, TableColumn<Product, Integer> productIdCol, TableColumn<Product, String> productNameCol, TableColumn<Product, Integer> productInventoryCol, TableColumn<Product, Double> productPriceCol) {
         productTable.setItems(getAllProducts());
         productIdCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -43,15 +65,28 @@ public class Library {
         productInventoryCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
         productPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
-    // Changes the scene to the url provided upon an action
+
+    /**
+     *
+     * @param event Changes the scene to the url provided upon an action
+     * @param url url of different form
+     * @throws IOException catches RUNTIME ERROR
+     *
+     */
     public static void switchScreen(ActionEvent event, String url) throws IOException {
         Stage stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         Parent scene = FXMLLoader.load(Library.class.getResource(url));
         stage.setScene(new Scene(scene));
         stage.show();
     }
-    // Searches for a part id or name in the text field using the searchParts function and returns any part matching,
-    // or it will return all if the part is not found
+
+    /**
+     *
+     * @param searchPartField search field on form
+     * @param partTableView table to search
+     * Searches for a part id or name in the text field using the searchParts function and returns any part matching,
+     * or it will return all if the part is not found
+     */
     public static void searchPart(TextField searchPartField, TableView<Part> partTableView){
         try{
             partTableView.setItems(searchParts(searchPartField.getText()));
@@ -68,8 +103,14 @@ public class Library {
             }
         }
     }
-    // Searches for a product id or name in the text field using the searchProducts function and returns any part matching,
-    // or it will return all if the product is not found
+
+    /**
+     *
+     * @param searchProductField search field on form
+     * @param productTableView table to search
+     * Searches for a product id or name in the text field using the searchProducts function and returns any part matching,
+     * or it will return all if the product is not found
+     */
     public static void searchProduct(TextField searchProductField, TableView<Product> productTableView){
         try{
             productTableView.setItems(searchProducts(searchProductField.getText()));
@@ -86,7 +127,12 @@ public class Library {
             }
         }
     }
-    // Deletes the part from the table
+
+    /**
+     *
+     * @param partTableView table to delete from
+     * Deletes the part from the table
+     */
     public static void deleteSelectedPart(TableView<Part> partTableView) {
         if (partTableView.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to delete");
@@ -96,12 +142,23 @@ public class Library {
             partTableView.setItems(partTableView.getItems());
         }
     }
-    //Deletes the associated part in the modify or add product menus
+
+    /**
+     *
+     * @param selectedPart selected part in table
+     * @param partObservableList list of parts
+     * @return partObservableList.remove(selectedPart)
+     * Deletes the associated part in the modify or add product menus
+     */
     public static boolean deletePart(Part selectedPart, ObservableList<Part> partObservableList) {
         return partObservableList.remove(selectedPart);
     }
 
-    // Deletes the selected product in the table
+    /**
+     *
+     * @param productTableView table to delete from
+     * Deletes the selected product in the table
+     */
     public static void deleteSelectedProduct(TableView<Product> productTableView){
         if (productTableView.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a product to delete");
@@ -112,7 +169,18 @@ public class Library {
             productTableView.setItems(getAllProducts());
         }
     }
-    // Set text fields for Products
+
+    /**
+     *
+     * @param product product to set
+     * @param id set field to product
+     * @param name set field to product
+     * @param inventory set field to product
+     * @param price set field to product
+     * @param max set field to product
+     * @param min set field to product
+     * Set text fields for Products
+     */
     public static void setProductFields(Product product, TextField id, TextField name, TextField inventory, TextField price, TextField max, TextField min) {
         id.setText(String.valueOf(product.getId()));
         name.setText((product.getName()));
@@ -121,7 +189,18 @@ public class Library {
         max.setText((String.valueOf(product.getMax())));
         min.setText((String.valueOf(product.getMin())));
     }
-    // Set text fields for Parts
+
+    /**
+     *
+     * @param part part to set
+     * @param id set field to part
+     * @param name set field to part
+     * @param inventory set field to part
+     * @param price set field to part
+     * @param max set field to part
+     * @param min set field to part
+     * Set text fields for Parts
+     */
     public static void setPartFields(Part part, TextField id, TextField name, TextField inventory, TextField price, TextField max, TextField min) {
         id.setText(String.valueOf(part.getId()));
         name.setText((part.getName()));
@@ -131,7 +210,13 @@ public class Library {
         min.setText((String.valueOf(part.getMin())));
     }
 
-    // Takes the part in the selected table and sends it via the sendPart function to the modify part controller
+    /**
+     *
+     * @param mainController location to modify
+     * @param partTableView table of select part
+     * @param event Takes the part in the selected table and sends it via the sendPart function to the modify part controller
+     * @throws IOException catches RUNTIME ERROR
+     */
     public static void modifySelectedPart(MainController mainController, TableView<Part> partTableView, ActionEvent event) throws IOException{
         if(partTableView.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to modify");
@@ -150,7 +235,13 @@ public class Library {
         }
     }
 
-    //Takes the product in the selected table and sends it via the sendProduct function to the modify product controller
+    /**
+     *
+     * @param mainController location to modify
+     * @param productTableView table of select product
+     * @param event Takes the product in the selected table and sends it via the sendProduct function to the modify product controller
+     * @throws IOException catches RUNTIME ERROR
+     */
     public static void modifySelectedProduct(MainController mainController, TableView<Product> productTableView, ActionEvent event) throws IOException{
         if(productTableView.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a product to modify");
@@ -169,7 +260,13 @@ public class Library {
         }
     }
 
-    // Add part to table 2 in the Modify Product controller menu
+    /**
+     *
+     * @param partTable initial table to add from
+     * @param partTable2 table to add to
+     * @param idCol know part based on id
+     * Add part to table 2 in the Modify Product controller menu
+     */
     public static void addPartToTable2(TableView<Part> partTable, TableView<Part> partTable2, TableColumn<Part, Integer> idCol){
         ObservableList<Part> parts;
         parts = partTable2.getItems();
@@ -185,7 +282,17 @@ public class Library {
         parts.remove(partTable2.getSelectionModel().getSelectedItem());
     }
      */
-    // Sets the table of the associated parts in the modify product controller menu
+
+    /**
+     *
+     * @param associatedPartIdCol sets field to associated part
+     * @param associatedPartInvCol sets field to associated part
+     * @param associatedPartNameCol sets field to associated part
+     * @param associatedPartPriceCol sets field to associated part
+     * @param associatedPartTable table to set
+     * @param product product with associated part
+     * Sets the table of the associated parts in the modify product controller menu
+     */
     public static void setAssociatedPartsTable(TableColumn<Part, Integer> associatedPartIdCol, TableColumn<Part, Integer> associatedPartInvCol, TableColumn<Part, String> associatedPartNameCol, TableColumn<Part, Double> associatedPartPriceCol, TableView<Part> associatedPartTable, Product product) {
         associatedPartTable.setItems(product.getAllAssociatedParts());
         associatedPartTable.getSortOrder().add(associatedPartIdCol);
@@ -195,14 +302,28 @@ public class Library {
         associatedPartPriceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
-    // Auto gen ID
+    /**
+     * static int part and product id for tracking unique ids
+     * FUTURE ENHANCEMENT: Could use a list of unique ids so that when one id is removed that specific id
+     * could be used again. The current version only increments and does not account for removal of an id
+     */
     private static int partId = 0;
     private static int productId = 0;
-    // Generates an incrementing id for parts
+
+    /**
+     *
+     * @return incremented partId
+     * Generates an incrementing id for parts
+     */
     public static int autoPartGenId(){
         return ++partId;
     }
-    // Generates an incrementing id for products
+
+    /**
+     *
+     * @return incremented productId
+     * Generates an incrementing id for products
+     */
     public static int autoProductGenId(){
         return ++productId;
     }

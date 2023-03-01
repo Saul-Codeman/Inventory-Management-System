@@ -22,66 +22,129 @@ import static com.example.wgusoftware1.Library.*;
 
 public class ModifyProductController implements Initializable {
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button modifyProductAddButton;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button modifyProductCancelButton;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Integer> modifyProductIdCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Integer> modifyProductIdCol2;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyProductIdTxt;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Integer> modifyProductInventoryCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Integer> modifyProductInventoryCol2;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyProductInventoryTxt;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyProductMaxTxt;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyProductMinTxt;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, String> modifyProductNameCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, String> modifyProductNameCol2;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyProductNameTxt;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Double> modifyProductPriceCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Double> modifyProductPriceCol2;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyProductPriceTxt;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button modifyProductRemoveButton;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button modifyProductSaveButton;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField modifyProductSearchTxt;
 
+    /**
+     * Table of the GUI interface
+     */
     @FXML
     private TableView<Part> modifyProductTable;
 
+    /**
+     * Table of the GUI interface
+     */
     @FXML
     private TableView<Part> modifyProductTable2;
 
@@ -90,16 +153,20 @@ public class ModifyProductController implements Initializable {
     Stage stage;
     Parent scene;
 
-    // Saving an original parts list in case the user makes changes and cancels
+    /**
+     * Saving an original parts list in case the user makes changes and cancels
+     */
     private ObservableList<Part> tempPartsList;
 
-    // Adds part to temporary list and displays that to associated parts table
+    /**
+     *
+     * @param event Adds part to temporary list and displays that to associated parts table
+     * FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
+     * I ended up using a temporary list to store the associated parts. I would only add or remove from that list and set table 2 to match
+     * Old method had a bug that would still add parts even when canceled
+     */
     @FXML
     void modifyProductAddHandler(ActionEvent event) {
-        // FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
-        // I ended up using a temporary list to store the associated parts. I would only add or remove from that list and set table 2 to match
-        // Old method had a bug that would still add parts even when canceled
-        // addPartToTable2(modifyProductTable, modifyProductTable2, modifyProductIdCol);
         if (modifyProductTable.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to add");
             alert.showAndWait();
@@ -111,23 +178,32 @@ public class ModifyProductController implements Initializable {
         modifyProductTable2.setItems(tempPartsList);
     }
 
-    // Cancels modification and returns to main
+    /**
+     *
+     * @param event Cancels modification and returns to main
+     * @throws IOException catches RUNTIME ERROR
+     * Enhanced
+     * Old method had a bug that would still add or remove parts even when canceled
+     */
     @FXML
     void modifyProductCancelHandler(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text field values, do you want to continue?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
-            // Enhanced
-            // Old method had a bug that would still add or remove parts even when canceled
             modifyProductTable2.setItems(tempPartsList);
             switchScreen(event, mainUrl);
         }
     }
 
-    // Removes part from temporary parts list and displays on the associated parts table
+    /**
+     *
+     * @param event Removes part from temporary parts list and displays on the associated parts table
+     * FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
+     * Old method had a bug that would still remove parts even when canceled
+     * Old method used: deleteSelectedPart(modifyProductTable2);
+     */
     @FXML
     void modifyProductRemoveHandler(ActionEvent event) {
-        // FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
         if (modifyProductTable2.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to remove");
             alert.showAndWait();
@@ -136,17 +212,19 @@ public class ModifyProductController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will remove the associated part, do you want to continue?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK) {
-            // Enhanced method
             tempPartsList = FXCollections.observableArrayList(modifyProductTable2.getItems());
             Part part = modifyProductTable2.getSelectionModel().getSelectedItem();
             tempPartsList.remove(part);
             modifyProductTable2.setItems(tempPartsList);
-            // Old method had a bug that would still remove parts even when canceled
-            // deleteSelectedPart(modifyProductTable2);
         }
     }
 
-    // Saves modified changes and returns to main
+    /**
+     *
+     * @param event Saves modified changes and returns to main
+     * @throws IOException catches an error at startup
+     * RUNTIME ERROR when typing a non-numeric value into text fields
+     */
     @FXML
     void modifyProductSaveHandler(ActionEvent event) throws IOException{
         try {
@@ -157,7 +235,6 @@ public class ModifyProductController implements Initializable {
                 alert.showAndWait();
                 return;
             }
-            // RUNTIME ERROR when typing a non-numeric value into text fields
             int stock = Integer.parseInt(modifyProductInventoryTxt.getText());
             double price = Double.parseDouble(modifyProductPriceTxt.getText());
             int max = Integer.parseInt(modifyProductMaxTxt.getText());
@@ -191,14 +268,21 @@ public class ModifyProductController implements Initializable {
 
     }
 
-    // Sends the selected product from main to the modify product and add product menu to display associated lists and elements
+    /**
+     *
+     * @param product Sends the selected product from main to the modify product and add product menu to display associated lists and elements
+     */
     public void sendProduct(Product product){
         setProductFields(product, modifyProductIdTxt, modifyProductNameTxt, modifyProductInventoryTxt, modifyProductPriceTxt, modifyProductMaxTxt, modifyProductMinTxt);
 
         setPartsTable(modifyProductTable, modifyProductIdCol, modifyProductNameCol, modifyProductInventoryCol, modifyProductPriceCol);
         setAssociatedPartsTable(modifyProductIdCol2, modifyProductInventoryCol2, modifyProductNameCol2, modifyProductPriceCol2, modifyProductTable2, product);
     }
-    // Searches the parts list
+
+    /**
+     *
+     * @param event Searches the parts list
+     */
     @FXML
     void modifyProductSearchHandler(ActionEvent event) {
         searchPart(modifyProductSearchTxt, modifyProductTable);

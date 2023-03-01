@@ -21,61 +21,117 @@ import static com.example.wgusoftware1.Library.*;
 
 public class MainController extends Application implements Initializable {
 
-    //FXML
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button mainExitButton;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button mainPartAddButton;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button mainPartDeleteButton;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Integer> mainPartIdCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Integer> mainPartInventoryCol;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button mainPartModifyButton;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, String> mainPartNameCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Double> mainPartPriceCol;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField mainPartSearchTxt;
 
+    /**
+     * Table of the GUI interface
+     */
     @FXML
     private TableView<Part> mainPartTable;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button mainProductAddButton;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button mainProductDeleteButton;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Product, Integer> mainProductIdCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Product, Integer> mainProductInventoryCol;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button mainProductModifyButton;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Product, String> mainProductNameCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Product, Double> mainProductPriceCol;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField mainProductSearchTxt;
 
+    /**
+     * Table of the GUI interface
+     */
     @FXML
     private TableView<Product> mainProductTable;
 
@@ -84,7 +140,11 @@ public class MainController extends Application implements Initializable {
     Stage stage;
     Parent scene;
 
-    // Exit button
+    /**
+     *
+     * @param event
+     * Exit button
+     */
     @FXML
     void mainExitHandler(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to close the application?");
@@ -94,13 +154,24 @@ public class MainController extends Application implements Initializable {
         }
     }
 
-    // Add a part menu
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     * RUNTIME ERROR: Function would throw a runtime error when throws IOException was not present
+     * Add a part menu
+     */
     @FXML
     void partAddHandler(ActionEvent event) throws IOException {
         switchScreen(event, addPartUrl);
     }
 
-    // Delete a selected part
+    /**
+     *
+     * @param event
+     * Delete a selected part
+     */
     @FXML
     void partDeleteHandler(ActionEvent event) {
         if (mainPartTable.getSelectionModel().getSelectedItem() == null){
@@ -115,25 +186,44 @@ public class MainController extends Application implements Initializable {
         }
     }
 
-    // Modify a selected part
+
+    /**
+     *
+     * @param event
+     * @throws IOException
+     * Modify a selected part
+     */
     @FXML
     void partModifyHandler(ActionEvent event) throws IOException {
         modifySelectedPart(this, mainPartTable, event);
     }
 
-    // Search for a part
+    /**
+     *
+     * @param event
+     * Search for a part
+     */
     @FXML
     void partSearchHandler(ActionEvent event) {
         searchPart(mainPartSearchTxt, mainPartTable);
     }
 
-    // Add a product menu
+    /**
+     *
+     * @param event
+     * @throws IOException
+     * Switch to add a product menu
+     */
     @FXML
     void productAddHandler(ActionEvent event) throws IOException {
         switchScreen(event, addProductUrl);
     }
 
-    // Delete the selected product
+    /**
+     *
+     * @param event
+     * Delete the selected product
+     */
     @FXML
     void productDeleteHandler(ActionEvent event) {
         if (mainProductTable.getSelectionModel().getSelectedItem() == null){
@@ -154,25 +244,41 @@ public class MainController extends Application implements Initializable {
         }
     }
 
-    // Choose a product to modify and switch scenes
+    /**
+     *
+     * @param event
+     * @throws IOException
+     * Choose a product to modify and switch scenes
+     */
     @FXML
     void productModifyHandler(ActionEvent event) throws IOException {
         modifySelectedProduct(this, mainProductTable,event);
     }
 
-    // Search Products
+    /**
+     *
+     * @param event
+     * Search Products
+     */
     @FXML
     void productSearchHandler(ActionEvent event) {
         searchProduct(mainProductSearchTxt, mainProductTable);
     }
 
-    // Initialize in console
+    /**
+     * Initialize in console
+     */
     @Override
     public void init(){
         System.out.println("Initialized");
     }
 
-    // Load the page
+    /**
+     *
+     * @param stage
+     * @throws IOException
+     * Load the page
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("Main.fxml"));
@@ -182,6 +288,11 @@ public class MainController extends Application implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param args
+     * Lauches args and adds products and parts to lists
+     */
     public static void main(String[] args){
 
         // Declare data for Inventory Management System
@@ -208,6 +319,12 @@ public class MainController extends Application implements Initializable {
         launch(args);
     }
 
+    /**
+     *
+     * @param url of current form
+     * @param resourceBundle bundle
+     * initializes the parts and products tables
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Initialize Parts

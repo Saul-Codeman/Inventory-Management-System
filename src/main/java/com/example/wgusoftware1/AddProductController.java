@@ -21,67 +21,130 @@ import static com.example.wgusoftware1.Library.*;
 
 public class AddProductController implements Initializable {
 
-    // FXML
+
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button addProductAddButton;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button addProductCancelButton;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Integer> addProductIdCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Integer> addProductIdCol2;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addProductIdTxt;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Integer> addProductInventoryCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Integer> addProductInventoryCol2;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addProductInventoryTxt;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addProductMaxTxt;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addProductMinTxt;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, String> addProductNameCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, String> addProductNameCol2;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addProductNameTxt;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Double> addProductPriceCol;
 
+    /**
+     * Table column of the GUI interface
+     */
     @FXML
     private TableColumn<Part, Double> addProductPriceCol2;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addProductPriceTxt;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button addProductRemoveButton;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button addProductSaveButton;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addProductSearchTxt;
 
+    /**
+     * Table of the GUI interface
+     */
     @FXML
     private TableView<Part> addProductTable;
 
+    /**
+     * Table of the GUI interface
+     */
     @FXML
     private TableView<Part> addProductTable2;
 
@@ -89,7 +152,10 @@ public class AddProductController implements Initializable {
     Stage stage;
     Parent scene;
 
-    // Adds the associated part to the product
+    /**
+     *
+     * @param event Adds the associated part to the product
+     */
     @FXML
     void addProductAddHandler(ActionEvent event) {
         if (addProductTable.getSelectionModel().getSelectedItem() == null){
@@ -99,7 +165,12 @@ public class AddProductController implements Initializable {
         }
         addPartToTable2(addProductTable, addProductTable2, addProductIdCol);
     }
-    // Cancels the addition of a new product and returns to main
+
+    /**
+     *
+     * @param event Cancels the addition of a new product and returns to main
+     * @throws IOException catches RUNTIME ERROR
+     */
     @FXML
     void addProductCancelHandler(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text field values, do you want to continue?");
@@ -109,7 +180,10 @@ public class AddProductController implements Initializable {
         }
     }
 
-    // Removes the associated product from the new product
+    /**
+     *
+     * @param event Removes the associated product from the new product
+     */
     @FXML
     void addProductRemoveHandler(ActionEvent event) {
         if (addProductTable2.getSelectionModel().getSelectedItem() == null){
@@ -124,7 +198,11 @@ public class AddProductController implements Initializable {
         }
     }
 
-    // Saves the new product and returns to main
+    /**
+     *
+     * @param event Saves the new product and returns to main
+     * @throws IOException catches RUNTIME ERROR
+     */
     @FXML
     void addProductSaveHandler(ActionEvent event) throws IOException {
         // Take and save the data
@@ -165,13 +243,21 @@ public class AddProductController implements Initializable {
             alert.showAndWait();
         }
     }
-    // Searches for part
+
+    /**
+     *
+     * @param event Searches for part
+     */
     @FXML
     void addProductSearchHandler(ActionEvent event) {
         searchPart(addProductSearchTxt, addProductTable);
     }
 
-
+    /**
+     *
+     * @param url of current form
+     * @param resourceBundle bundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Sets up both the parts and associated parts tables

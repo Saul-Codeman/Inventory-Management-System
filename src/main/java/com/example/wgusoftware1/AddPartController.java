@@ -18,64 +18,114 @@ import static com.example.wgusoftware1.Library.*;
 
 public class AddPartController implements Initializable {
 
-    //FXML
+    /**
+     * Label of the GUI interface
+     */
     @FXML
     private Label addPartUniqueLbl;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button addPartCancelButton;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addPartIdTxt;
 
+    /**
+     * Radio Button of the GUI interface
+     */
     @FXML
     private RadioButton addPartInHouseButton;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addPartInventoryTxt;
 
+    /**
+     * Toggle group of the GUI interface
+     */
     @FXML
     private ToggleGroup addPartLocationTG;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addPartMachineIdTxt;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addPartMaxTxt;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addPartMinTxt;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addPartNameTxt;
 
+    /**
+     * Radio button of the GUI interface
+     */
     @FXML
     private RadioButton addPartOutsourcedButton;
 
+    /**
+     * Text field of the GUI interface
+     */
     @FXML
     private TextField addPartPriceTxt;
 
+    /**
+     * Button of the GUI interface
+     */
     @FXML
     private Button addPartSaveButton;
 
-    // Handlers
-
+    /**
+     * Handlers
+     */
     Stage stage;
     Parent scene;
 
-    // Switches label to machineID
+    /**
+     *
+     * @param event Switches label to machineID
+     */
     @FXML
     void addPartInHouseHandler(ActionEvent event) {
         addPartUniqueLbl.setText("Machine ID");
     }
 
-    // Switches label to Company Name
+    /**
+     *
+     * @param event Switches label to Company Name
+     */
     @FXML
     void addPartOutsourcedHandler(ActionEvent event) {
         addPartUniqueLbl.setText("Company Name");
     }
 
-    // Cancel Changes
+    /**
+     *
+     * @param event Cancel Changes
+     * @throws IOException catches RUNTIME ERROR
+     *
+     */
     @FXML
     void addPartCancelHandler(ActionEvent event) throws IOException {
 
@@ -86,7 +136,11 @@ public class AddPartController implements Initializable {
         }
     }
 
-    // Save and add the part
+    /**
+     *
+     * @param event Save and add the part
+     * @throws IOException catches RUNTIME ERROR
+     */
     @FXML
     void addPartSaveHandler(ActionEvent event) throws IOException {
         // Take and save the data
@@ -98,7 +152,9 @@ public class AddPartController implements Initializable {
                 alert.showAndWait();
                 return;
             }
-            // RUNTIME ERROR when typing a non-numeric value into text fields
+            /**
+             * RUNTIME ERROR when typing a non-numeric value into text fields
+             */
             int stock = Integer.parseInt(addPartInventoryTxt.getText());
             double price = Double.parseDouble(addPartPriceTxt.getText());
             int max = Integer.parseInt(addPartMaxTxt.getText());
