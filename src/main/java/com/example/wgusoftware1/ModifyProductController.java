@@ -20,6 +20,9 @@ import java.util.ResourceBundle;
 import static com.example.wgusoftware1.Inventory.lookupProduct;
 import static com.example.wgusoftware1.Library.*;
 
+/**
+ * ModifyProductController class used to modify products in the list of products
+ */
 public class ModifyProductController implements Initializable {
 
     /**
@@ -163,7 +166,7 @@ public class ModifyProductController implements Initializable {
      * @param event Adds part to temporary list and displays that to associated parts table
      * FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
      * I ended up using a temporary list to store the associated parts. I would only add or remove from that list and set table 2 to match
-     * Old method had a bug that would still add parts even when canceled
+     * LOGICAL ERROR: Old method had a bug that would still add parts even when canceled
      */
     @FXML
     void modifyProductAddHandler(ActionEvent event) {
@@ -183,7 +186,7 @@ public class ModifyProductController implements Initializable {
      * @param event Cancels modification and returns to main
      * @throws IOException catches RUNTIME ERROR
      * Enhanced
-     * Old method had a bug that would still add or remove parts even when canceled
+     * LOGICAL ERROR: Old method had a bug that would still add or remove parts even when canceled
      */
     @FXML
     void modifyProductCancelHandler(ActionEvent event) throws IOException {
@@ -199,7 +202,7 @@ public class ModifyProductController implements Initializable {
      *
      * @param event Removes part from temporary parts list and displays on the associated parts table
      * FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
-     * Old method had a bug that would still remove parts even when canceled
+     * LOGICAL ERROR: Old method had a bug that would still remove parts even when canceled
      * Old method used: deleteSelectedPart(modifyProductTable2);
      */
     @FXML
@@ -222,7 +225,7 @@ public class ModifyProductController implements Initializable {
     /**
      *
      * @param event Saves modified changes and returns to main
-     * @throws IOException catches an error at startup
+     * @throws IOException catches runtime error at startup
      * RUNTIME ERROR when typing a non-numeric value into text fields
      */
     @FXML

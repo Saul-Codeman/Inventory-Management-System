@@ -19,6 +19,9 @@ import static com.example.wgusoftware1.Inventory.addProduct;
 import static com.example.wgusoftware1.Inventory.lookupProduct;
 import static com.example.wgusoftware1.Library.*;
 
+/**
+ * AddProductController class used to add products to the list of products
+ */
 public class AddProductController implements Initializable {
 
 

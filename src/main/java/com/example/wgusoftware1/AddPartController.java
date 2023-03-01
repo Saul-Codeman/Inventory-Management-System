@@ -16,6 +16,9 @@ import java.util.ResourceBundle;
 
 import static com.example.wgusoftware1.Library.*;
 
+/**
+ * AddPartController class used to add parts to the list of parts
+ */
 public class AddPartController implements Initializable {
 
     /**

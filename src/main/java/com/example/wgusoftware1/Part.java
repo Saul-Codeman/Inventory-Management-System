@@ -7,6 +7,7 @@ package com.example.wgusoftware1;
 /**
  *
  * @author Place Your Name Here: Sean Roberts
+ * Part class that contains the information about each part in inventory
  */
 public abstract class Part {
     private int id;

@@ -1,5 +1,8 @@
 package com.example.wgusoftware1;
 
+/**
+ * InHouse class that is an extension of part that is used to specify the source of the part
+ */
 public class InHouse extends Part {
 
     // Declare Field

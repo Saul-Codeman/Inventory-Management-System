@@ -17,6 +17,9 @@ import java.util.ResourceBundle;
 
 import static com.example.wgusoftware1.Library.*;
 
+/**
+ * ModifyPartController class used to modify parts in the list of parts
+ */
 public class ModifyPartController implements Initializable {
 
     /**

@@ -4,6 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
+/**
+ * Inventory class that keeps track of all parts and products in the inventory
+ */
 public class Inventory {
 
     // Declare Fields

@@ -3,6 +3,9 @@ package com.example.wgusoftware1;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Product class that contains the information about each product in inventory
+ */
 public class Product {
 
     // Declare Fields
