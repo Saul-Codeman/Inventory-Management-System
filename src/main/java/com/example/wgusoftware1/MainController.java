@@ -283,7 +283,8 @@ public class MainController extends Application implements Initializable {
     /**
      * Launches args and adds products and parts to lists
      * @param args string for main
-     * FUTURE ENHANCEMENT: Add a database to the project so that items edited could be saved
+     *
+     * @implNote FUTURE ENHANCEMENT: Add a database to the project so that items edited could be saved
      * over time instead of run in memory.
      * Javadoc folder location: in root. "WGUSoftware1"
      */
