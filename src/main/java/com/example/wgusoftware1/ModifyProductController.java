@@ -162,8 +162,9 @@ public class ModifyProductController implements Initializable {
     private ObservableList<Part> tempPartsList;
 
     /**
-     *
-     * @param event Adds part to temporary list and displays that to associated parts table
+     * Adds part to temporary list and displays that to associated parts table
+     * @param event Action on button
+     * @implNote
      * FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
      * I ended up using a temporary list to store the associated parts. I would only add or remove from that list and set table 2 to match
      * LOGICAL ERROR: Old method had a bug that would still add parts even when canceled
@@ -182,10 +183,10 @@ public class ModifyProductController implements Initializable {
     }
 
     /**
-     *
-     * @param event Cancels modification and returns to main
+     * Cancels modification and returns to main
+     * @param event action on button
      * @throws IOException catches RUNTIME ERROR
-     * Enhanced
+     * @implNote
      * LOGICAL ERROR: Old method had a bug that would still add or remove parts even when canceled
      */
     @FXML
@@ -199,8 +200,9 @@ public class ModifyProductController implements Initializable {
     }
 
     /**
-     *
-     * @param event Removes part from temporary parts list and displays on the associated parts table
+     * Removes part from temporary parts list and displays on the associated parts table
+     * @param event action on button
+     * @implNote
      * FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
      * LOGICAL ERROR: Old method had a bug that would still remove parts even when canceled
      * Old method used: deleteSelectedPart(modifyProductTable2);
@@ -223,10 +225,10 @@ public class ModifyProductController implements Initializable {
     }
 
     /**
-     *
-     * @param event Saves modified changes and returns to main
+     * Saves modified changes and returns to main
+     * @param event action on button
      * @throws IOException catches runtime error at startup
-     * RUNTIME ERROR when typing a non-numeric value into text fields
+     * @throws NumberFormatException RUNTIME ERROR when typing a non-numeric value into text fields
      */
     @FXML
     void modifyProductSaveHandler(ActionEvent event) throws IOException{
@@ -272,8 +274,8 @@ public class ModifyProductController implements Initializable {
     }
 
     /**
-     *
-     * @param product Sends the selected product from main to the modify product and add product menu to display associated lists and elements
+     * Sends the selected product from main to the modify product and add product menu to display associated lists and elements
+     * @param product action on table and button
      */
     public void sendProduct(Product product){
         setProductFields(product, modifyProductIdTxt, modifyProductNameTxt, modifyProductInventoryTxt, modifyProductPriceTxt, modifyProductMaxTxt, modifyProductMinTxt);
@@ -283,8 +285,8 @@ public class ModifyProductController implements Initializable {
     }
 
     /**
-     *
-     * @param event Searches the parts list
+     * Searches the parts list
+     * @param event action on search bar like an enter key
      */
     @FXML
     void modifyProductSearchHandler(ActionEvent event) {
@@ -292,7 +294,7 @@ public class ModifyProductController implements Initializable {
     }
 
     /**
-     *
+     * Initialize form
      * @param url of current form
      * @param resourceBundle bundle
      */

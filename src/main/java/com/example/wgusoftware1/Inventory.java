@@ -13,10 +13,8 @@ public class Inventory {
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
 
-    // Add parts and products
-
     /**
-     *
+     * Add parts
      * @param part added to allParts
      */
     public static void addPart(Part part){
@@ -24,7 +22,7 @@ public class Inventory {
     }
 
     /**
-     *
+     * Add products
      * @param product add to allProducts
      */
     public static void addProduct(Product product){
@@ -32,7 +30,7 @@ public class Inventory {
     }
 
     /**
-     *
+     * Show all parts
      * @return allParts
      */
     // Get Parts and products
@@ -41,7 +39,7 @@ public class Inventory {
     }
 
     /**
-     *
+     * Show all products
      * @return allProducts
      */
     public static ObservableList<Product> getAllProducts(){
@@ -51,7 +49,7 @@ public class Inventory {
     //Lookup parts and products by ID
 
     /**
-     *
+     * Lookup parts by id
      * @param id to lookup
      * @return allParts.get(id)
      */
@@ -67,7 +65,7 @@ public class Inventory {
     }
 
     /**
-     *
+     * Lookup products by id
      * @param id to lookup
      * @return allProducts.get(id)
      */
@@ -84,7 +82,7 @@ public class Inventory {
     //Lookup Parts and Products by name
 
     /**
-     *
+     * Lookup parts by name
      * @param name to lookup
      * @return allParts.get(name)
      */
@@ -100,7 +98,7 @@ public class Inventory {
     }
 
     /**
-     *
+     * Lookup products by name
      * @param name to lookup
      * @return allProducts.get(name)
      */
@@ -117,7 +115,7 @@ public class Inventory {
     //Update parts and products
 
     /**
-     *
+     * Update parts
      * @param id of part to update
      * @param modifiedPart part modified
      */
@@ -133,7 +131,7 @@ public class Inventory {
     }
 
     /**
-     *
+     * Update products
      * @param id of product to update
      * @param modifiedProduct product modified
      */
@@ -149,7 +147,7 @@ public class Inventory {
     }
 
     /**
-     *
+     * Delete part
      * @param part to delete
      * @return allParts.remove(part)
      * Delete part
@@ -159,7 +157,7 @@ public class Inventory {
     }
 
     /**
-     *
+     * Delete product
      * @param product to delete
      * @return allProducts.remove(product)
      * Delete product
@@ -171,7 +169,7 @@ public class Inventory {
     // Searches for a part based on id or name
 
     /**
-     *
+     * Search part by name or id
      * @param search id or name of part to be searched
      * @return Parts
      */
@@ -195,7 +193,7 @@ public class Inventory {
     // Searches for products based on id or name
 
     /**
-     *
+     * Search product by id or name
      * @param search id or name of product to be searched
      * @return Products
      */

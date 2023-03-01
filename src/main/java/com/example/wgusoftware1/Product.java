@@ -19,6 +19,7 @@ public class Product {
 
     // Getters and Setters
     /**
+     * Gets id
      * @return the id
      */
     public int getId() {
@@ -26,6 +27,7 @@ public class Product {
     }
 
     /**
+     * Sets id
      * @param id the id to set
      */
     public void setId(int id) {
@@ -33,6 +35,7 @@ public class Product {
     }
 
     /**
+     * Gets name
      * @return the name
      */
     public String getName() {
@@ -40,6 +43,7 @@ public class Product {
     }
 
     /**
+     * Sets name
      * @param name the name to set
      */
     public void setName(String name) {
@@ -47,6 +51,7 @@ public class Product {
     }
 
     /**
+     * Gets price
      * @return the price
      */
     public Double getPrice() {
@@ -54,6 +59,7 @@ public class Product {
     }
 
     /**
+     * Sets price
      * @param price the price to set
      */
     public void setPrice(Double price) {
@@ -61,6 +67,7 @@ public class Product {
     }
 
     /**
+     * Gets stock
      * @return the stock
      */
     public int getStock() {
@@ -68,6 +75,7 @@ public class Product {
     }
 
     /**
+     * Sets stock
      * @param stock the stock to set
      */
     public void setStock(int stock) {
@@ -75,7 +83,7 @@ public class Product {
     }
 
     /**
-     *
+     * Gets min
      * @return the min
      */
     public int getMin() {
@@ -83,6 +91,7 @@ public class Product {
     }
 
     /**
+     * Sets min
      * @param min the min to set
      */
     public void setMin(int min) {
@@ -90,7 +99,7 @@ public class Product {
     }
 
     /**
-     *
+     * Gets max
      * @return the max
      */
     public int getMax() {
@@ -98,6 +107,7 @@ public class Product {
     }
 
     /**
+     * Sets max
      * @param max that max to set
      */
     public void setMax(int max) {
@@ -106,14 +116,13 @@ public class Product {
 
 
     /**
-     *
+     * Product constructor
      * @param id of product constructed
      * @param name of product constructed
      * @param price of product constructed
      * @param stock of product constructed
      * @param min of product constructed
      * @param max of product constructed
-     *            Constructor
      */
     public Product(int id, String name, Double price, int stock, int min, int max) {
         this.id = id;
@@ -125,28 +134,25 @@ public class Product {
     }
 
     /**
-     *
-     * @param part to add to product
      * Adds the associated part to product
+     * @param part to add to product
      */
     public void addAssociatedPart(Part part){
         associatedParts.add(part);
     }
 
     /**
-     *
+     * Deletes an associated part of the product
      * @param part to remove from product
      * @return associatedParts with removed part
-     * Deletes an associated part of the product
      */
     public boolean deleteAssociatedPart(Part part){
         return associatedParts.remove(part);
     }
 
     /**
-     *
-     * @return associatedParts
      * Returns all associated parts of the product
+     * @return associatedParts
      */
     public ObservableList<Part> getAllAssociatedParts(){
         return associatedParts;

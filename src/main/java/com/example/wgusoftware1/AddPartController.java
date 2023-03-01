@@ -106,8 +106,8 @@ public class AddPartController implements Initializable {
     Parent scene;
 
     /**
-     *
-     * @param event Switches label to machineID
+     * Switches label to machineID
+     * @param event action on button
      */
     @FXML
     void addPartInHouseHandler(ActionEvent event) {
@@ -115,8 +115,8 @@ public class AddPartController implements Initializable {
     }
 
     /**
-     *
-     * @param event Switches label to Company Name
+     * Switches label to Company Name
+     * @param event action on radio button
      */
     @FXML
     void addPartOutsourcedHandler(ActionEvent event) {
@@ -124,8 +124,8 @@ public class AddPartController implements Initializable {
     }
 
     /**
-     *
-     * @param event Cancel Changes
+     * Cancel Changes
+     * @param event action on button
      * @throws IOException catches RUNTIME ERROR
      *
      */
@@ -140,9 +140,10 @@ public class AddPartController implements Initializable {
     }
 
     /**
-     *
-     * @param event Save and add the part
+     * Save and add the part
+     * @param event action on button
      * @throws IOException catches RUNTIME ERROR
+     * @throws NumberFormatException catches RUNTIME ERROR
      */
     @FXML
     void addPartSaveHandler(ActionEvent event) throws IOException {
@@ -155,9 +156,6 @@ public class AddPartController implements Initializable {
                 alert.showAndWait();
                 return;
             }
-            /**
-             * RUNTIME ERROR when typing a non-numeric value into text fields
-             */
             int stock = Integer.parseInt(addPartInventoryTxt.getText());
             double price = Double.parseDouble(addPartPriceTxt.getText());
             int max = Integer.parseInt(addPartMaxTxt.getText());
@@ -204,7 +202,7 @@ public class AddPartController implements Initializable {
 
 
     /**
-     *
+     *Initialize form
      * @param url of current form
      * @param resourceBundle bundle
      */

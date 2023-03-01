@@ -144,8 +144,8 @@ public class MainController extends Application implements Initializable {
     Parent scene;
 
     /**
-     *
-     * @param event Exit button
+     * Exit the program
+     * @param event action on button
      */
     @FXML
     void mainExitHandler(ActionEvent event) {
@@ -158,8 +158,8 @@ public class MainController extends Application implements Initializable {
 
 
     /**
-     *
-     * @param event Add a part menu
+     * Switch to add a part menu
+     * @param event action on a button
      * @throws IOException RUNTIME ERROR: Function would throw a runtime error when throws IOException was not present
      */
     @FXML
@@ -168,8 +168,8 @@ public class MainController extends Application implements Initializable {
     }
 
     /**
-     *
-     * @param event Delete a selected part
+     * Delete a selected part
+     * @param event action on button
      */
     @FXML
     void partDeleteHandler(ActionEvent event) {
@@ -187,8 +187,8 @@ public class MainController extends Application implements Initializable {
 
 
     /**
-     *
-     * @param event Modify a selected part
+     * Modify a selected part
+     * @param event action on button
      * @throws IOException catches RUNTIME ERROR
      */
     @FXML
@@ -197,8 +197,8 @@ public class MainController extends Application implements Initializable {
     }
 
     /**
-     *
-     * @param event Search for a part
+     * Search for a part
+     * @param event action on a search bar like an enter key
      */
     @FXML
     void partSearchHandler(ActionEvent event) {
@@ -206,8 +206,8 @@ public class MainController extends Application implements Initializable {
     }
 
     /**
-     *
-     * @param event Switch to add a product menu
+     * Switch to add a product menu
+     * @param event action on a button
      * @throws IOException catches RUNTIME ERROR
      */
     @FXML
@@ -216,8 +216,8 @@ public class MainController extends Application implements Initializable {
     }
 
     /**
-     *
-     * @param event Delete the selected product
+     * Delete the selected product
+     * @param event action on a button and table selection
      */
     @FXML
     void productDeleteHandler(ActionEvent event) {
@@ -240,8 +240,8 @@ public class MainController extends Application implements Initializable {
     }
 
     /**
-     *
-     * @param event Choose a product to modify and switch scenes
+     * Choose a product to modify and switch scenes
+     * @param event action on table
      * @throws IOException catches RUNTIME ERROR
      */
     @FXML
@@ -250,8 +250,8 @@ public class MainController extends Application implements Initializable {
     }
 
     /**
-     *
-     * @param event Search Products
+     * Search Products
+     * @param event action on a search bar like an enter key
      */
     @FXML
     void productSearchHandler(ActionEvent event) {
@@ -267,10 +267,9 @@ public class MainController extends Application implements Initializable {
     }
 
     /**
-     *
+     * Load and start the page
      * @param stage where the scene are displayed
-     * @throws IOException
-     * Load the page
+     * @throws IOException catches RUNTIME ERROR
      */
     @Override
     public void start(Stage stage) throws IOException {
@@ -282,9 +281,11 @@ public class MainController extends Application implements Initializable {
     }
 
     /**
-     *
-     * @param args
      * Launches args and adds products and parts to lists
+     * @param args string for main
+     * FUTURE ENHANCEMENT: Add a database to the project so that items edited could be saved
+     * over time instead of run in memory.
+     * Javadoc folder location: in root. "WGUSoftware1"
      */
     public static void main(String[] args){
 
@@ -313,10 +314,9 @@ public class MainController extends Application implements Initializable {
     }
 
     /**
-     *
+     * Initializes the parts and products tables
      * @param url of current form
      * @param resourceBundle bundle
-     * initializes the parts and products tables
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

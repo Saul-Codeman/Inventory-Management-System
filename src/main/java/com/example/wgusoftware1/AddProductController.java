@@ -156,8 +156,8 @@ public class AddProductController implements Initializable {
     Parent scene;
 
     /**
-     *
-     * @param event Adds the associated part to the product
+     * Adds the associated part to the product
+     * @param event action on button
      */
     @FXML
     void addProductAddHandler(ActionEvent event) {
@@ -170,8 +170,8 @@ public class AddProductController implements Initializable {
     }
 
     /**
-     *
-     * @param event Cancels the addition of a new product and returns to main
+     * Cancels the addition of a new product and returns to main
+     * @param event action on button
      * @throws IOException catches RUNTIME ERROR
      */
     @FXML
@@ -184,8 +184,8 @@ public class AddProductController implements Initializable {
     }
 
     /**
-     *
-     * @param event Removes the associated product from the new product
+     * Removes the associated product from the new product
+     * @param event action on button
      */
     @FXML
     void addProductRemoveHandler(ActionEvent event) {
@@ -202,9 +202,10 @@ public class AddProductController implements Initializable {
     }
 
     /**
-     *
-     * @param event Saves the new product and returns to main
+     * Saves the new product and returns to main
+     * @param event action on button
      * @throws IOException catches RUNTIME ERROR
+     * @throws NumberFormatException catches RUNTIME ERROR
      */
     @FXML
     void addProductSaveHandler(ActionEvent event) throws IOException {
@@ -248,8 +249,8 @@ public class AddProductController implements Initializable {
     }
 
     /**
-     *
-     * @param event Searches for part
+     * Searches for part
+     * @param event action on text field like enter key
      */
     @FXML
     void addProductSearchHandler(ActionEvent event) {
@@ -257,7 +258,7 @@ public class AddProductController implements Initializable {
     }
 
     /**
-     *
+     * Initialize form
      * @param url of current form
      * @param resourceBundle bundle
      */

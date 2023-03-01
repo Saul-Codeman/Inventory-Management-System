@@ -11,7 +11,7 @@ public class InHouse extends Part {
     // InHouse constructor
 
     /**
-     *
+     * InHouse Constructor
      * @param id of part constructed
      * @param name of part constructed
      * @param price of part constructed
@@ -27,7 +27,7 @@ public class InHouse extends Part {
     // Getter and Setter
 
     /**
-     *
+     * Get machineID
      * @return machineId
      */
     public int getMachineId() {
@@ -35,7 +35,7 @@ public class InHouse extends Part {
     }
 
     /**
-     *
+     * Set Machine ID
      * @param machineId to be set
      */
     public void setMachineId(int machineId) {

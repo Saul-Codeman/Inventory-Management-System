@@ -31,13 +31,12 @@ public class Library {
 
 
     /**
-     *
+     * Displays all parts to the parts tables
      * @param partTable sets table
      * @param partIdCol sets id in table
      * @param partNameCol sets name in table
      * @param partInventoryCol sets inventory in table
      * @param partPriceCol sets price in table
-     * Displays all parts to the parts tables
      */
     public static void setPartsTable(TableView<Part> partTable, TableColumn<Part, Integer> partIdCol, TableColumn<Part, String> partNameCol, TableColumn<Part, Integer> partInventoryCol, TableColumn<Part, Double> partPriceCol){
         // Initialize Parts
@@ -50,13 +49,12 @@ public class Library {
     }
 
     /**
-     *
+     * Displays all products to the products tables
      * @param productTable sets table
      * @param productIdCol sets id in table
      * @param productNameCol sets name in table
      * @param productInventoryCol sets inventory in table
      * @param productPriceCol sets price in table
-     * Displays all products to the products tables
      */
     public static void setProductsTable(TableView<Product> productTable, TableColumn<Product, Integer> productIdCol, TableColumn<Product, String> productNameCol, TableColumn<Product, Integer> productInventoryCol, TableColumn<Product, Double> productPriceCol) {
         productTable.setItems(getAllProducts());
@@ -67,8 +65,8 @@ public class Library {
     }
 
     /**
-     *
-     * @param event Changes the scene to the url provided upon an action
+     * Changes the scene to the url provided upon an action
+     * @param event action on a button
      * @param url url of different form
      * @throws IOException catches RUNTIME ERROR
      *
@@ -81,11 +79,10 @@ public class Library {
     }
 
     /**
-     *
-     * @param searchPartField search field on form
-     * @param partTableView table to search
      * Searches for a part id or name in the text field using the searchParts function and returns any part matching,
      * or it will return all if the part is not found
+     * @param searchPartField search field on form
+     * @param partTableView table to search
      */
     public static void searchPart(TextField searchPartField, TableView<Part> partTableView){
         try{
@@ -105,11 +102,10 @@ public class Library {
     }
 
     /**
-     *
-     * @param searchProductField search field on form
-     * @param productTableView table to search
      * Searches for a product id or name in the text field using the searchProducts function and returns any part matching,
      * or it will return all if the product is not found
+     * @param searchProductField search field on form
+     * @param productTableView table to search
      */
     public static void searchProduct(TextField searchProductField, TableView<Product> productTableView){
         try{
@@ -129,9 +125,8 @@ public class Library {
     }
 
     /**
-     *
-     * @param partTableView table to delete from
      * Deletes the part from the table
+     * @param partTableView table to delete from
      */
     public static void deleteSelectedPart(TableView<Part> partTableView) {
         if (partTableView.getSelectionModel().getSelectedItem() == null) {
@@ -144,20 +139,18 @@ public class Library {
     }
 
     /**
-     *
+     * Deletes the associated part in the modify or add product menus
      * @param selectedPart selected part in table
      * @param partObservableList list of parts
      * @return partObservableList.remove(selectedPart)
-     * Deletes the associated part in the modify or add product menus
      */
     public static boolean deletePart(Part selectedPart, ObservableList<Part> partObservableList) {
         return partObservableList.remove(selectedPart);
     }
 
     /**
-     *
-     * @param productTableView table to delete from
      * Deletes the selected product in the table
+     * @param productTableView table to delete from
      */
     public static void deleteSelectedProduct(TableView<Product> productTableView){
         if (productTableView.getSelectionModel().getSelectedItem() == null){
@@ -171,7 +164,7 @@ public class Library {
     }
 
     /**
-     *
+     * Set text fields for Products
      * @param product product to set
      * @param id set field to product
      * @param name set field to product
@@ -179,7 +172,6 @@ public class Library {
      * @param price set field to product
      * @param max set field to product
      * @param min set field to product
-     * Set text fields for Products
      */
     public static void setProductFields(Product product, TextField id, TextField name, TextField inventory, TextField price, TextField max, TextField min) {
         id.setText(String.valueOf(product.getId()));
@@ -191,7 +183,7 @@ public class Library {
     }
 
     /**
-     *
+     * Set text fields for Parts
      * @param part part to set
      * @param id set field to part
      * @param name set field to part
@@ -199,7 +191,6 @@ public class Library {
      * @param price set field to part
      * @param max set field to part
      * @param min set field to part
-     * Set text fields for Parts
      */
     public static void setPartFields(Part part, TextField id, TextField name, TextField inventory, TextField price, TextField max, TextField min) {
         id.setText(String.valueOf(part.getId()));
@@ -211,10 +202,10 @@ public class Library {
     }
 
     /**
-     *
+     * Takes the part in the selected table and sends it via the sendPart function to the modify part controller
      * @param mainController location to modify
      * @param partTableView table of select part
-     * @param event Takes the part in the selected table and sends it via the sendPart function to the modify part controller
+     * @param event action on a button and a table
      * @throws IOException catches RUNTIME ERROR
      */
     public static void modifySelectedPart(MainController mainController, TableView<Part> partTableView, ActionEvent event) throws IOException{
@@ -236,10 +227,10 @@ public class Library {
     }
 
     /**
-     *
+     * Takes the product in the selected table and sends it via the sendProduct function to the modify product controller
      * @param mainController location to modify
      * @param productTableView table of select product
-     * @param event Takes the product in the selected table and sends it via the sendProduct function to the modify product controller
+     * @param event action on a button and a table
      * @throws IOException catches RUNTIME ERROR
      */
     public static void modifySelectedProduct(MainController mainController, TableView<Product> productTableView, ActionEvent event) throws IOException{
@@ -261,11 +252,10 @@ public class Library {
     }
 
     /**
-     *
+     * Add part to table 2 in the Modify Product controller menu
      * @param partTable initial table to add from
      * @param partTable2 table to add to
      * @param idCol know part based on id
-     * Add part to table 2 in the Modify Product controller menu
      */
     public static void addPartToTable2(TableView<Part> partTable, TableView<Part> partTable2, TableColumn<Part, Integer> idCol){
         ObservableList<Part> parts;
@@ -284,14 +274,13 @@ public class Library {
      */
 
     /**
-     *
+     * Sets the table of the associated parts in the modify product controller menu
      * @param associatedPartIdCol sets field to associated part
      * @param associatedPartInvCol sets field to associated part
      * @param associatedPartNameCol sets field to associated part
      * @param associatedPartPriceCol sets field to associated part
      * @param associatedPartTable table to set
      * @param product product with associated part
-     * Sets the table of the associated parts in the modify product controller menu
      */
     public static void setAssociatedPartsTable(TableColumn<Part, Integer> associatedPartIdCol, TableColumn<Part, Integer> associatedPartInvCol, TableColumn<Part, String> associatedPartNameCol, TableColumn<Part, Double> associatedPartPriceCol, TableView<Part> associatedPartTable, Product product) {
         associatedPartTable.setItems(product.getAllAssociatedParts());
@@ -311,18 +300,16 @@ public class Library {
     private static int productId = 0;
 
     /**
-     *
-     * @return incremented partId
      * Generates an incrementing id for parts
+     * @return incremented partId
      */
     public static int autoPartGenId(){
         return ++partId;
     }
 
     /**
-     *
-     * @return incremented productId
      * Generates an incrementing id for products
+     * @return incremented productId
      */
     public static int autoProductGenId(){
         return ++productId;

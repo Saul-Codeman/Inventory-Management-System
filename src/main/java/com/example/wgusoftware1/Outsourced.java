@@ -12,7 +12,7 @@ public class Outsourced extends Part {
     // Constructor
 
     /**
-     *
+     * Outsourced constructor
      * @param id of part constructed
      * @param name of part constructed
      * @param price of part constructed
@@ -28,7 +28,7 @@ public class Outsourced extends Part {
     // Getters and Setters
 
     /**
-     *
+     * Get company name
      * @return companyName
      */
     public String getCompanyName() {
@@ -36,7 +36,7 @@ public class Outsourced extends Part {
     }
 
     /**
-     *
+     * set company name
      * @param companyName to be set
      */
     public void setCompanyName(String companyName) {

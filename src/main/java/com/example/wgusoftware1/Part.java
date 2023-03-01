@@ -2,8 +2,8 @@ package com.example.wgusoftware1;
 
 /**
  * Supplied class Part.java
- * @author Place Your Name Here: Sean Roberts
  * Part class that contains the information about each part in inventory
+ * @author Place Your Name Here: Sean Roberts
  */
 public abstract class Part {
     private int id;

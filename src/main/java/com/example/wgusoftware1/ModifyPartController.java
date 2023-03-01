@@ -105,8 +105,8 @@ public class ModifyPartController implements Initializable {
     Parent scene;
 
     /**
-     *
-     * @param event Changes the label to machine ID when activated
+     * Changes the label to machine ID when activated
+     * @param event action on radio button
      */
     @FXML
     void modifyPartInHouseHandler(ActionEvent event) {
@@ -114,8 +114,8 @@ public class ModifyPartController implements Initializable {
     }
 
     /**
-     *
-     * @param event Changes the label to Company Name when activated
+     * Changes the label to Company Name when activated
+     * @param event action on radio button
      */
     @FXML
     void modifyPartOutsourcedHandler(ActionEvent event) {
@@ -123,8 +123,8 @@ public class ModifyPartController implements Initializable {
     }
 
     /**
-     *
-     * @param event Cancels changes to the part and returns to main
+     * Cancels changes to the part and returns to main
+     * @param event action on button
      * @throws IOException catches RUNTIME ERROR
      */
     @FXML
@@ -137,9 +137,10 @@ public class ModifyPartController implements Initializable {
     }
 
     /**
-     *
-     * @param event Saves the changes to the part and returns to main
+     * Saves the changes to the part and returns to main
+     * @param event action on button
      * @throws IOException catches RUNTIME ERROR
+     * @throws NumberFormatException catches RUNTIME ERROR when text field is blank or non-numeric value in text fields
      */
     @FXML
     void modifyPartSaveHandler(ActionEvent event) throws IOException{
@@ -192,8 +193,8 @@ public class ModifyPartController implements Initializable {
     }
 
     /**
-     *
-     * @param part Collects the part from main and sends it through to the modify part controller to be modified
+     * Collects the part from main and sends it through to the modify part controller to be modified
+     * @param part part to be sent
      */
     public void sendPart(Part part){
 
@@ -211,7 +212,7 @@ public class ModifyPartController implements Initializable {
         }
     }
     /**
-     *
+     * Initialize form
      * @param url of current form
      * @param resourceBundle bundle
      */
