@@ -142,8 +142,7 @@ public class MainController extends Application implements Initializable {
 
     /**
      *
-     * @param event
-     * Exit button
+     * @param event Exit button
      */
     @FXML
     void mainExitHandler(ActionEvent event) {
@@ -157,10 +156,8 @@ public class MainController extends Application implements Initializable {
 
     /**
      *
-     * @param event
-     * @throws IOException
-     * RUNTIME ERROR: Function would throw a runtime error when throws IOException was not present
-     * Add a part menu
+     * @param event Add a part menu
+     * @throws IOException RUNTIME ERROR: Function would throw a runtime error when throws IOException was not present
      */
     @FXML
     void partAddHandler(ActionEvent event) throws IOException {
@@ -169,8 +166,7 @@ public class MainController extends Application implements Initializable {
 
     /**
      *
-     * @param event
-     * Delete a selected part
+     * @param event Delete a selected part
      */
     @FXML
     void partDeleteHandler(ActionEvent event) {
@@ -189,9 +185,8 @@ public class MainController extends Application implements Initializable {
 
     /**
      *
-     * @param event
-     * @throws IOException
-     * Modify a selected part
+     * @param event Modify a selected part
+     * @throws IOException catches RUNTIME ERROR
      */
     @FXML
     void partModifyHandler(ActionEvent event) throws IOException {
@@ -200,8 +195,7 @@ public class MainController extends Application implements Initializable {
 
     /**
      *
-     * @param event
-     * Search for a part
+     * @param event Search for a part
      */
     @FXML
     void partSearchHandler(ActionEvent event) {
@@ -210,9 +204,8 @@ public class MainController extends Application implements Initializable {
 
     /**
      *
-     * @param event
-     * @throws IOException
-     * Switch to add a product menu
+     * @param event Switch to add a product menu
+     * @throws IOException catches RUNTIME ERROR
      */
     @FXML
     void productAddHandler(ActionEvent event) throws IOException {
@@ -221,8 +214,7 @@ public class MainController extends Application implements Initializable {
 
     /**
      *
-     * @param event
-     * Delete the selected product
+     * @param event Delete the selected product
      */
     @FXML
     void productDeleteHandler(ActionEvent event) {
@@ -246,9 +238,8 @@ public class MainController extends Application implements Initializable {
 
     /**
      *
-     * @param event
-     * @throws IOException
-     * Choose a product to modify and switch scenes
+     * @param event Choose a product to modify and switch scenes
+     * @throws IOException catches RUNTIME ERROR
      */
     @FXML
     void productModifyHandler(ActionEvent event) throws IOException {
@@ -257,8 +248,7 @@ public class MainController extends Application implements Initializable {
 
     /**
      *
-     * @param event
-     * Search Products
+     * @param event Search Products
      */
     @FXML
     void productSearchHandler(ActionEvent event) {
@@ -275,7 +265,7 @@ public class MainController extends Application implements Initializable {
 
     /**
      *
-     * @param stage
+     * @param stage where the scene are displayed
      * @throws IOException
      * Load the page
      */
@@ -291,7 +281,7 @@ public class MainController extends Application implements Initializable {
     /**
      *
      * @param args
-     * Lauches args and adds products and parts to lists
+     * Launches args and adds products and parts to lists
      */
     public static void main(String[] args){
 

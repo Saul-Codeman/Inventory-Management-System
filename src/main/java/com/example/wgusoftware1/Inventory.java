@@ -144,12 +144,12 @@ public class Inventory {
             }
         }
     }
-    //Delete parts and products
 
     /**
      *
      * @param part to delete
      * @return allParts.remove(part)
+     * Delete part
      */
     public static boolean deletePart(Part part){
         return allParts.remove(part);
@@ -159,6 +159,7 @@ public class Inventory {
      *
      * @param product to delete
      * @return allProducts.remove(product)
+     * Delete product
      */
     public static boolean deleteProduct(Product product){
         return allProducts.remove(product);
