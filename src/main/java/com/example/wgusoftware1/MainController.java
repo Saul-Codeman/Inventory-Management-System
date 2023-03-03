@@ -148,7 +148,7 @@ public class MainController extends Application implements Initializable {
      * @param event action on button
      */
     @FXML
-    void mainExitHandler(ActionEvent event) {
+    public void mainExitHandler(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to close the application?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
@@ -163,7 +163,7 @@ public class MainController extends Application implements Initializable {
      * @throws IOException RUNTIME ERROR: Function would throw a runtime error when throws IOException was not present
      */
     @FXML
-    void partAddHandler(ActionEvent event) throws IOException {
+    public void partAddHandler(ActionEvent event) throws IOException {
         switchScreen(event, addPartUrl);
     }
 
@@ -172,7 +172,7 @@ public class MainController extends Application implements Initializable {
      * @param event action on button
      */
     @FXML
-    void partDeleteHandler(ActionEvent event) {
+    public void partDeleteHandler(ActionEvent event) {
         if (mainPartTable.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to delete");
             alert.showAndWait();
@@ -192,7 +192,7 @@ public class MainController extends Application implements Initializable {
      * @throws IOException catches RUNTIME ERROR
      */
     @FXML
-    void partModifyHandler(ActionEvent event) throws IOException {
+    public void partModifyHandler(ActionEvent event) throws IOException {
         modifySelectedPart(this, mainPartTable, event);
     }
 
@@ -201,7 +201,7 @@ public class MainController extends Application implements Initializable {
      * @param event action on a search bar like an enter key
      */
     @FXML
-    void partSearchHandler(ActionEvent event) {
+    public void partSearchHandler(ActionEvent event) {
         searchPart(mainPartSearchTxt, mainPartTable);
     }
 
@@ -211,7 +211,7 @@ public class MainController extends Application implements Initializable {
      * @throws IOException catches RUNTIME ERROR
      */
     @FXML
-    void productAddHandler(ActionEvent event) throws IOException {
+    public void productAddHandler(ActionEvent event) throws IOException {
         switchScreen(event, addProductUrl);
     }
 
@@ -220,7 +220,7 @@ public class MainController extends Application implements Initializable {
      * @param event action on a button and table selection
      */
     @FXML
-    void productDeleteHandler(ActionEvent event) {
+    public void productDeleteHandler(ActionEvent event) {
         if (mainProductTable.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a product to delete");
             alert.showAndWait();
@@ -245,7 +245,7 @@ public class MainController extends Application implements Initializable {
      * @throws IOException catches RUNTIME ERROR
      */
     @FXML
-    void productModifyHandler(ActionEvent event) throws IOException {
+    public void productModifyHandler(ActionEvent event) throws IOException {
         modifySelectedProduct(this, mainProductTable,event);
     }
 
@@ -254,7 +254,7 @@ public class MainController extends Application implements Initializable {
      * @param event action on a search bar like an enter key
      */
     @FXML
-    void productSearchHandler(ActionEvent event) {
+    public void productSearchHandler(ActionEvent event) {
         searchProduct(mainProductSearchTxt, mainProductTable);
     }
 
@@ -281,12 +281,20 @@ public class MainController extends Application implements Initializable {
     }
 
     /**
+     * <p>
      * Javadoc folder location: in root. "WGUSoftware1"
+     * </p>
      * Launches args and adds products and parts to lists
+     * <p>
+     * FUTURE ENHANCEMENT: Add a database to the project so that items edited could be saved
+     * over time instead of running in memory. I would also add a function that whenever one of the exact
+     * same parts is added, the inventory count would increase for that object added.
+     * </p>
+     * <p>
+     * RUNTIME ERROR: In the save handlers on each controller, an error would occur when saving a string
+     * into an int or double space, which would throw a NumberFormatException.
+     * </p>
      * @param args string for main
-     *
-     * @implNote FUTURE ENHANCEMENT: Add a database to the project so that items edited could be saved
-     * over time instead of run in memory.
      */
     public static void main(String[] args){
 

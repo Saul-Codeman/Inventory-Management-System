@@ -109,7 +109,7 @@ public class ModifyPartController implements Initializable {
      * @param event action on radio button
      */
     @FXML
-    void modifyPartInHouseHandler(ActionEvent event) {
+    public void modifyPartInHouseHandler(ActionEvent event) {
         modifyPartUniqueLbl.setText("Machine ID");
     }
 
@@ -118,7 +118,7 @@ public class ModifyPartController implements Initializable {
      * @param event action on radio button
      */
     @FXML
-    void modifyPartOutsourcedHandler(ActionEvent event) {
+    public void modifyPartOutsourcedHandler(ActionEvent event) {
         modifyPartUniqueLbl.setText("Company Name");
     }
 
@@ -128,7 +128,7 @@ public class ModifyPartController implements Initializable {
      * @throws IOException catches RUNTIME ERROR
      */
     @FXML
-    void modifyPartCancelHandler(ActionEvent event) throws IOException {
+    public void modifyPartCancelHandler(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all changes made, do you want to continue?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
@@ -143,7 +143,7 @@ public class ModifyPartController implements Initializable {
      * @throws NumberFormatException catches RUNTIME ERROR when text field is blank or non-numeric value in text fields
      */
     @FXML
-    void modifyPartSaveHandler(ActionEvent event) throws IOException{
+    public void modifyPartSaveHandler(ActionEvent event) throws IOException{
         try {
             int id = Integer.parseInt(modifyPartIdTxt.getText());
             String name = modifyPartNameTxt.getText();

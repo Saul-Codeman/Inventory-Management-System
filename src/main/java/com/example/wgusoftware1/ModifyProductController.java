@@ -164,13 +164,14 @@ public class ModifyProductController implements Initializable {
     /**
      * Adds part to temporary list and displays that to associated parts table
      * @param event Action on button
-     * @implNote
+     * <p>
      * FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
      * I ended up using a temporary list to store the associated parts. I would only add or remove from that list and set table 2 to match
-     * LOGICAL ERROR: Old method had a bug that would still add parts even when canceled
+     * </p>
+     * <p>LOGICAL ERROR: Old method had a bug that would still add parts even when canceled</p>
      */
     @FXML
-    void modifyProductAddHandler(ActionEvent event) {
+    public void modifyProductAddHandler(ActionEvent event) {
         if (modifyProductTable.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to add");
             alert.showAndWait();
@@ -186,11 +187,10 @@ public class ModifyProductController implements Initializable {
      * Cancels modification and returns to main
      * @param event action on button
      * @throws IOException catches RUNTIME ERROR
-     * @implNote
      * LOGICAL ERROR: Old method had a bug that would still add or remove parts even when canceled
      */
     @FXML
-    void modifyProductCancelHandler(ActionEvent event) throws IOException {
+    public void modifyProductCancelHandler(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text field values, do you want to continue?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
@@ -202,13 +202,12 @@ public class ModifyProductController implements Initializable {
     /**
      * Removes part from temporary parts list and displays on the associated parts table
      * @param event action on button
-     * @implNote
-     * FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.
-     * LOGICAL ERROR: Old method had a bug that would still remove parts even when canceled
+     * <p>FUTURE ENHANCEMENT add the associated part to a queue to be saved in the save handler later.</p>
+     * <p>LOGICAL ERROR: Old method had a bug that would still remove parts even when canceled</p>
      * Old method used: deleteSelectedPart(modifyProductTable2);
      */
     @FXML
-    void modifyProductRemoveHandler(ActionEvent event) {
+    public void modifyProductRemoveHandler(ActionEvent event) {
         if (modifyProductTable2.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to remove");
             alert.showAndWait();
@@ -231,7 +230,7 @@ public class ModifyProductController implements Initializable {
      * @throws NumberFormatException RUNTIME ERROR when typing a non-numeric value into text fields
      */
     @FXML
-    void modifyProductSaveHandler(ActionEvent event) throws IOException{
+    public void modifyProductSaveHandler(ActionEvent event) throws IOException{
         try {
             int id = Integer.parseInt(modifyProductIdTxt.getText());
             String name = modifyProductNameTxt.getText();
@@ -289,7 +288,7 @@ public class ModifyProductController implements Initializable {
      * @param event action on search bar like an enter key
      */
     @FXML
-    void modifyProductSearchHandler(ActionEvent event) {
+    public void modifyProductSearchHandler(ActionEvent event) {
         searchPart(modifyProductSearchTxt, modifyProductTable);
     }
 

@@ -110,7 +110,7 @@ public class AddPartController implements Initializable {
      * @param event action on button
      */
     @FXML
-    void addPartInHouseHandler(ActionEvent event) {
+    public void addPartInHouseHandler(ActionEvent event) {
         addPartUniqueLbl.setText("Machine ID");
     }
 
@@ -119,7 +119,7 @@ public class AddPartController implements Initializable {
      * @param event action on radio button
      */
     @FXML
-    void addPartOutsourcedHandler(ActionEvent event) {
+    public void addPartOutsourcedHandler(ActionEvent event) {
         addPartUniqueLbl.setText("Company Name");
     }
 
@@ -130,7 +130,7 @@ public class AddPartController implements Initializable {
      *
      */
     @FXML
-    void addPartCancelHandler(ActionEvent event) throws IOException {
+    public void addPartCancelHandler(ActionEvent event) throws IOException {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text field values, do you want to continue?");
         Optional<ButtonType> result = alert.showAndWait();
@@ -146,7 +146,7 @@ public class AddPartController implements Initializable {
      * @throws NumberFormatException catches RUNTIME ERROR
      */
     @FXML
-    void addPartSaveHandler(ActionEvent event) throws IOException {
+    public void addPartSaveHandler(ActionEvent event) throws IOException {
         // Take and save the data
         try{
             int id;

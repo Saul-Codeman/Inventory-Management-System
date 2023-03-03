@@ -160,7 +160,7 @@ public class AddProductController implements Initializable {
      * @param event action on button
      */
     @FXML
-    void addProductAddHandler(ActionEvent event) {
+    public void addProductAddHandler(ActionEvent event) {
         if (addProductTable.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to add");
             alert.showAndWait();
@@ -175,7 +175,7 @@ public class AddProductController implements Initializable {
      * @throws IOException catches RUNTIME ERROR
      */
     @FXML
-    void addProductCancelHandler(ActionEvent event) throws IOException {
+    public void addProductCancelHandler(ActionEvent event) throws IOException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This will clear all text field values, do you want to continue?");
         Optional<ButtonType> result = alert.showAndWait();
         if(result.isPresent() && result.get() == ButtonType.OK){
@@ -188,7 +188,7 @@ public class AddProductController implements Initializable {
      * @param event action on button
      */
     @FXML
-    void addProductRemoveHandler(ActionEvent event) {
+    public void addProductRemoveHandler(ActionEvent event) {
         if (addProductTable2.getSelectionModel().getSelectedItem() == null){
             Alert alert = new Alert(Alert.AlertType.ERROR, "Please select a part to remove");
             alert.showAndWait();
@@ -208,7 +208,7 @@ public class AddProductController implements Initializable {
      * @throws NumberFormatException catches RUNTIME ERROR
      */
     @FXML
-    void addProductSaveHandler(ActionEvent event) throws IOException {
+    public void addProductSaveHandler(ActionEvent event) throws IOException {
         // Take and save the data
         try {
             int id;
@@ -253,7 +253,7 @@ public class AddProductController implements Initializable {
      * @param event action on text field like enter key
      */
     @FXML
-    void addProductSearchHandler(ActionEvent event) {
+    public void addProductSearchHandler(ActionEvent event) {
         searchPart(addProductSearchTxt, addProductTable);
     }
 
